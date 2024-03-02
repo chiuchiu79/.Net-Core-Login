@@ -1,0 +1,341 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Lilita+One&family=Noto+Sans+TC&family=Yatra+One&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans TC', sans-serif;
+}
+
+html,
+body {
+    overflow: hidden;
+    overflow-y: hidden;
+}
+
+body,
+html {
+    width: 100vw;
+    height: 100vh;
+}
+
+body {
+
+    background-image: linear-gradient(to left top,rgb(180, 180, 180),rgb(255, 255, 255));
+    background-repeat: no-repeat;
+    /* background-image: linear-gradient(to right bottom, #0f2167, #053d83, #00589d, #0975b5, #2592cb, #25a7d0, #43bbd1, #67cdd1, #94d7c0, #c0deba, #e5e4c2, #ffecd6); */
+    /* background: linear-gradient(to right bottom, rgba(104,185,231,1) 0%, rgb(255, 255, 255) 100%); */
+    /* background: rgb(1,147,232);
+    background: linear-gradient(90deg, rgba(1,147,232,1) 0%, rgba(2,134,207,1) 60%, rgba(3,103,147,1) 75%); */
+    /* background-color: rgb(238, 238, 238); */
+}
+
+#login {
+    margin-top: 5%;
+    height: 100%;
+}
+
+#loginTop {
+    height: 100%;
+}
+
+#logoArea {
+    /* width: 71.3%; */
+    height: 46%;
+    /* border: 2px solid black; */
+    /* margin-top: 20%; */
+    /* margin-left: 15%; */
+}
+
+#webName h1 {
+    font-family: 'Yatra One', sans-serif;
+    font-size: 9vw;
+    margin-left: 5%;
+}
+
+#logo {
+    display: flex;
+    justify-content: center;
+}
+
+#logo img {
+    width: 100%;
+    height: 100%;
+    /* border: 2px solid black; */
+}
+
+#slogan span {
+    font-size: 2vw;
+    float: right;
+    /* margin-left: 10%; */
+    font-family: 'Yatra One', serif;
+}
+
+#loginBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#minLogo {
+    width: 59.3%;
+    height: 50px;
+    margin-left: 20%;
+    margin-top: 10%;
+    display: none;
+}
+
+#minLogo img {
+    width: 50px;
+    height: 50px;
+}
+
+#loginInput {
+    overflow: auto;
+    /* height: 762.4px; */
+    width: 80%;
+    /* min-width: 400px; */
+    height: 80%;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: 30px 30px 0 30px;
+    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.2);
+    margin-left: 4%;
+    margin-right: 4%;
+    background-color: transparent;
+    backdrop-filter: blur(55px);
+    min-height: 630px;
+}
+
+
+@media (max-height: 630px) {
+    #loginInput {
+        height: 100%;
+        min-height: none;
+    }
+}
+
+@media (max-width: 768px) {
+    #loginInput {
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+
+    #minLogo {
+        display: block;
+    }
+}
+
+#registerButton {
+    width: 80%;
+    height: 45px;
+    font-size: 1.25rem;
+    border-radius: 40px;
+    border: none;
+    outline: none;
+    color: aliceblue;
+    background-color: #434242;
+}
+
+form>div.form-group.mb-2 {
+    display: flex;
+    justify-content: center;
+}
+
+form>div.form-group.mb-2>input {
+    width: 80%;
+    height: 40px;
+}
+
+h1.d-flex.justify-content-center {
+    line-height: 1.5;
+    font-size: 3rem;
+    margin-top: 0%;
+    margin-bottom: 0%;
+}
+
+.text {
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+}
+
+.text input {
+    width: 80%;
+    height: 40px;
+    margin: 1vh;
+}
+
+.checkboxdiv {
+    display: flex;
+
+    width: 80%;
+    margin-left: 10%;
+}
+
+.form-group.col-12 {
+    display: flex;
+    justify-content: center;
+}
+
+.form-group.col-12>.form-check {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+}
+
+.form a {
+    font-size: 1rem;
+    color: black;
+    text-decoration: none;
+    float: right;
+    margin-right: 12%;
+}
+
+#rememberMe {
+    margin-left: 10%;
+}
+
+.form button {
+    width: 80%;
+    height: 45px;
+    font-size: 1.25rem;
+    margin-top: 5%;
+    margin-left: 10%;
+    border-radius: 40px;
+    border: none;
+    outline: none;
+    color: aliceblue;
+    background-color: #434242;
+}
+
+.form button:hover {
+    color: #434242;
+    background-color: #EEF5FF;
+}
+
+#errorMsg {
+    color: rgb(190, 1, 1);
+    font-size: 12pt;
+    height: 5%;
+    display: flex;
+    justify-content: center;
+}
+
+.split {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.splitLeft,
+.splitRight {
+    width: 40%;
+    border-bottom: 1px solid gray;
+}
+
+#loginFooter {
+    position: relative;
+    height: 50px;
+    bottom: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    /* margin-top: 5%; */
+}
+
+#loginFooter a {
+    font-size: 0.93rem;
+    color: #434242;
+    text-decoration: none;
+}
+
+#logoBlock {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#registerBox>.text {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+@media (max-width: 992px) {
+
+    #loginBar {
+        width: 100%;
+    }
+
+    #leftCover {
+        display: none;
+    }
+
+    #loginFooter a {
+        font-size: 0.8rem !important;
+        display: flex;
+    }
+
+    #loginInput {
+        width: 100%;
+        height: 100vh;
+        border: none;
+        box-shadow: none;
+        backdrop-filter: none;
+    }
+
+    #logoBlock {
+        display: none;
+    }
+
+    #webName h1 {
+        margin: 0px;
+        font-size: 5rem;
+    }
+}
+
+@media (max-height:600px) {
+
+    html,
+    body {
+        overflow-y: auto;
+    }
+}
+
+#loginFooter a:hover {
+    color: blue;
+}
+
+.sso {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.sso img {
+    width: 60px;
+    height: 60px;
+
+}
+
+#facebook,
+#google,
+#line {
+    background: transparent;
+    border: none;
+}
+
+.splitDown {
+    width: 550px;
+    border-bottom: 1px solid gray;
+    margin-top: 5%;
+    margin-left: 5%;
+}
+
+#registerReminder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin-top: 10%; */
+}

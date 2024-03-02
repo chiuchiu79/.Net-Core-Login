@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "User";
+}
+
+<div class="container-fluid body-content d-flex justify-content-center">
+    <div>
+        <h2>User</h2>
+        <form method="post"> 
+            <button class="btn btn-success" asp-action="ExportExcel">輸出Excel</button>
+            <button class="btn btn-warning" asp-action="ExportPDF">輸出PDF</button>
+        </form>
+        <hr />
+
+        <div>
+            <table>
+                <tr class="border">
+                    <th class="border">ID</th>
+                    <th class="border">Profile photo</th>
+                    <th class="border">Account</th>
+                    <th class="border">Name</th>
+                    <th class="border">Phone</th>
+                    <th class="border">Email</th>
+                </tr>
+                @{
+                    foreach (var users in Model)
+                    {
+                        <tr class="border">
+                            <th class="border">@users.id</th>
+                            <th class="border"><img src="@users.usericon" style="width:100px;height:100px" /></th>
+                            <th class="border">@users.userAccount</th>
+                            <th class="border">@users.username</th>
+                            <th class="border">@users.phonenumber</th>
+                            <th class="border">@users.email</th>
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+
+</script>
