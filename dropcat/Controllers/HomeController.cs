@@ -80,34 +80,6 @@ namespace dropcat.Controllers
             };
         }
 
-        public IActionResult ExportPDF()
-        {
-            List<UserInfo> exportusers = new List<UserInfo>();
-            exportusers = dbContext.UserInfo.ToList();
-            var selectColums = exportusers.Select(u => new
-            {
-                u.id,
-                u.userAccount,
-                u.username,
-                u.phonenumber,
-                u.email,
-                u.usericon
-            });
-
-            
-            var doc = new HtmlToPdfDocument()
-            {
-                GlobalSettings =
-                {
-                    ColorMode = ColorMode.Color,
-                    PaperSize = PaperKind.A4
-                }
-            };
-
-            return View();
-        }
-
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
