@@ -32,7 +32,15 @@ namespace dropcat.Controllers
         {
             string sqlQuery = "SELECT * FROM UserInfo";
 
-            if (!string.IsNullOrEmpty(keyword) || gender != "0" || education != "未選擇")
+            if (string.IsNullOrEmpty(keyword) && gender == "4" && education == "全部")
+            {
+                var allUsers = dbContext.UserInfo.ToList();
+                var educationCounts = dbContext.UserInfo.GroupBy(u => u.lineid).Select(g => new { LineId = g.Key, Count = g.Count() }).ToList();
+                return Ok(new { Users = allUsers, EducationCounts = educationCounts });
+            }
+
+
+            if (!string.IsNullOrEmpty(keyword) || gender != "4" || education != "全部")
             {
                 sqlQuery += " WHERE 1=1";
 
@@ -41,16 +49,17 @@ namespace dropcat.Controllers
                     sqlQuery += $" AND username LIKE '%{keyword}%'";
                 }
 
-                if (gender == "0" || gender == "1" || gender == "2")
+                if (gender != "4")
                 {
                     sqlQuery += $" AND gender = '{gender}'";
                 }
 
-                if (education != "未選擇")
+                if (education != "全部")
                 {
                     sqlQuery += $" AND lineid = '{education}'";
                 }
             }
+
 
             List<UserInfo> searchUser = new List<UserInfo>();
             searchUser = dbContext.UserInfo
@@ -63,6 +72,12 @@ namespace dropcat.Controllers
             }
 
             return Ok(searchUser);
+        }
+
+        public class EducationCount
+        {
+            public string LineId { get; set; }
+            public int Count { get; set; }
         }
 
         public IActionResult ExportExcel()
