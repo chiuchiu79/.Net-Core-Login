@@ -1,0 +1,188 @@
+* {
+    transition: color 0.33s, background-color 0.33s;
+}
+
+.cr-image {
+    user-select: none;
+}
+
+#oldImg {
+    min-height: 400px;
+}
+
+#imgs {
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 1vh;
+    min-height: 100px;
+}
+
+.imgCropBlock{
+    border-radius: 8px 8px 0px 8px;
+    position: relative; 
+    margin: 0.5%;
+    width: 24%;
+    padding-top: 24%;
+}
+
+.smallImg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    border-radius: 8px 8px 0px 8px;
+    border: 1px black solid;
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    -webkit-user-drag: none;
+}
+
+.imgCropBlock:nth-child(4n) {
+    margin-right: 0vw;
+}
+
+.imgCropBlock:nth-last-of-type(-n+4) {
+    margin-bottom: 0vh;
+}
+
+#prevPageButton {
+    display: none;
+}
+
+#sendButton {
+    display: none;
+
+}
+
+#textDiv {
+    display: none;
+    width: 100%;
+    min-height: 80px;
+}
+
+#textInput {
+    padding: 10px;
+    resize: none;
+    width: 100%;
+    min-height: 80px;
+    background-color: var(--bgColor);
+    color: var(--fontColor);
+}
+
+.postBox {
+    object-fit: contain;
+    height: 128px;
+    width: 128px;
+    border: 1px solid black;
+}
+
+#location {
+    text-decoration: none;
+    display: none;
+    color: var(--fontColor);
+    width: 100%;
+    border: 1px solid rgb(118, 118, 118);
+    background-color: var(--bgColor);
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 2px;
+    user-select: none;
+}
+
+#mapBox {
+    z-index: 1060;
+    display: none;
+    position: fixed;
+    flex-direction: column;
+    left: 5%;
+    bottom: 5%;
+    width: 90%;
+    height: 90%;
+}
+
+.mapTop,
+.mapFooter {
+    height: 10%;
+    min-height: 50px;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.mapTop {
+    border-radius: 12px 12px 0px 0px;
+}
+
+.mapFooter {
+    border-radius: 0px 0px 12px 12px;
+}
+
+.mapMid {
+    height: 80%;
+    border-bottom: 1px solid var(--bgColor);
+    border-top: 1px solid var(--bgColor);
+}
+
+.mapTop,
+.mapMid,
+.mapFooter {
+    display: flex;
+    width: 100%;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    background-color: var(--bgColor2);
+}
+
+.closeMap {
+    color: gray;
+    font-size: 2em;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: color 0.2s;
+}
+
+.boxBlackOut {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0%;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 105%;
+    height: 100vh;
+    display: none;
+    z-index: 2000;
+}
+
+.closeMap:hover {
+    color: black;
+}
+
+#mapCroppin {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+/* shatter the bootscrap */
+
+.modal-content {
+    background-color: var(--bgColor2);
+}
+
+.modal-header {
+    border-bottom: var(--bgColor) solid 1px;
+}
+
+.modal-footer {
+    border-top: var(--bgColor) solid 1px;
+}
+
+.modal-title {
+    color: var(--fontColor);
+}

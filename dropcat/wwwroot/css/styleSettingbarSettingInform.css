@@ -1,0 +1,80 @@
+#settingbar {
+    background-color: white;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    box-shadow: inset -7px 0 9px -7px rgba(0, 0, 0, 0.7);
+
+}
+
+#FixedSetting {
+    z-index: 80;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    left: 16.666667%;
+    min-width: 65px;
+    width: 16.666667%;
+    background-color: rgb(255, 255, 255);
+    height: 100%;
+    box-shadow: inset -7px 0 9px -7px rgba(0, 0, 0, 0.7);
+}
+
+#phoneSettingButton {
+    height: 12vw;
+    width: 12vw;
+    bottom: calc(15px + 12vw);
+    left: -0.2vw;
+    font-size: 2em;
+    position: fixed;
+    display: none;
+    border-radius: 0px 5vw 5vw 0px;
+    align-items: center;
+    justify-content: center;
+    padding-right: 3.5vw;
+    border: 1px gray solid;
+    box-shadow: inset -7px 0 9px -7px rgba(0, 0, 0, 0.7);
+}
+
+.leftSelectAbleTitle {
+    font-weight: bold;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    margin-top: 2vh;
+    width: 100%;
+    height: 50px;
+    border-radius: 16px 16px 16px 16px;
+    transition: background-color 0.25s;
+}
+
+#FixedSetting>.leftSelectAble>.leftIconText {
+    width: 100%;
+}
+
+.leftSelectAbleTitle>.leftIconText {
+    padding-left: 0px;
+}
+
+#FixedSetting>.leftSelectAble {
+    margin-top: 0.5vh;
+}
+
+#phoneSettingButton>i {
+    padding-left: 2vw;
+}
+
+@media screen and (max-width: 500px) {
+
+    #settingbar {
+        display: none;
+    }
+
+    #phoneSettingButton {
+        display: flex;
+    }
+
+}

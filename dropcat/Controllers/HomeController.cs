@@ -32,11 +32,16 @@ namespace dropcat.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult Login([FromBody] Dictionary<String, String> credentials)
+        public IActionResult mainPage()
         {
-            String identifier = credentials["username"];
-            String password = credentials["password"];
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login([FromBody] Dictionary<String, String> logindata)
+        {
+            String identifier = logindata["username"];
+            String password = logindata["password"];
 
             UserInfo user = loginService.verify(identifier, password);
 
@@ -49,37 +54,6 @@ namespace dropcat.Controllers
                 return BadRequest("帳號或密碼錯誤，請重新輸入");
             }
         }
-
-        public IActionResult UserList()
-        {
-            List<UserInfo> userlist = new List<UserInfo>();
-            userlist = dbContext.UserInfo.ToList();
-            return View(userlist);
-        }
-
-        public IActionResult ExportExcel()
-        {
-            List<UserInfo> exportusers = new List<UserInfo>();
-            exportusers = dbContext.UserInfo.ToList();
-            var selectColums = exportusers.Select(u => new
-            {
-                u.id,
-                u.userAccount,
-                u.username,
-                u.phonenumber,
-                u.email,
-                u.usericon
-            });
-
-            var memoryStream = new MemoryStream();
-            memoryStream.SaveAs(selectColums);
-            memoryStream.Seek(0, SeekOrigin.Begin);
-            return new FileStreamResult(memoryStream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
-            {
-                FileDownloadName = "List.xlsx"
-            };
-        }
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

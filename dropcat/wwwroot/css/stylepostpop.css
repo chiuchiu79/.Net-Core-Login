@@ -1,0 +1,516 @@
+hr{
+    border:inset 1px;
+}
+
+#postbackground {
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0%;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 105%;
+    height: 100vh;
+    display: flex;
+    z-index: 2000;
+}
+
+#postpopblock {
+    display: flex;
+    justify-content: center;
+    width: 70%;
+    height: 80%;
+    padding-top: 30%;
+    position: relative;
+}
+
+#postblockleft {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60%;
+    height: 100%;
+}
+
+#postblockimg {
+    background-color: #000000ff;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    /* 將圖片固定在父層的大小 */
+    width: 100%;
+    height: 100%;
+    /* 高和寬都填滿容器 */
+    object-fit: contain;
+    /* 和background-image設定background-size: cover一樣，圖片剛好填滿 */
+    object-position: center;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+#postblockright {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40%;
+    height: 100%;
+    padding: 0;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+#postaccount {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    height: 9%;
+    border-top-right-radius: 15px;
+    border-bottom: 2px solid rgba(197, 195, 195, 0.3);
+    background-color: var(--bgColor);
+    padding-left: 5%;
+}
+
+#accountimgblock {
+    display: inline-block;
+    border: 1px, solid, black;
+    left: 0%;
+    /* height: 80%; */
+    padding-left: 5vh;
+    padding-bottom: 5vh;
+    position: relative;
+
+}
+
+#poppostlatestlikettime{
+    margin-left:16px;
+    color: var(--fontColor);
+}
+
+#poppostaccountimg {
+    position: absolute;
+    width: 5vh;
+    height: 5vh;
+    /* top: 0; */
+    /* right: 0; */
+    left: 0;
+    /* bottom: 0; */
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-top-right-radius: 15px;
+
+}
+
+#accountnameblock {
+    display: inline-block;
+    position: relative;
+    top: 0%;
+    left: 0%;
+    width: 60%;
+    margin-left: 1.5%;
+}
+
+#poppostaccountname {
+    width: 40%;
+    padding-top: 1%;
+    padding-left: 8px;
+    font-size: 1rem;
+    vertical-align: center;
+    color: var(--fontColor);
+}
+
+
+#posttext {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 80%;
+    overflow-x: hidden;
+    border-bottom: 2px solid rgba(197, 195, 195, 0.3);
+    background-color: var(--bgColor);
+}
+
+#posttext::-webkit-scrollbar {
+    visibility: hidden;
+}
+
+#posttextblock {
+    position: absolute;
+    display: block;
+    overflow-y: scroll;
+    overflow-y: hidden;
+    list-style-type: none;
+    margin-top: 2%;
+    width: 100%;
+    padding-left: 5%;
+    
+
+}
+
+.posttextblockcontext {
+    overflow: visible;
+    display: list-item;
+    list-style-type: none;
+    width: 100%;
+    margin-bottom: 5%;
+
+}
+
+.posttextimgblock {
+    display: inline-block;
+    width: 5vh;
+    padding-top: 5vh;
+    left: 0%;
+    position: relative;
+
+
+}
+
+.posttextimg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    /* 將圖片固定在父層的大小 */
+    width: 100%;
+    height: 100%;
+    /* 高和寬都填滿容器 */
+    object-fit: cover;
+    /* 和background-image設定background-size: cover一樣，圖片剛好填滿 */
+    object-position: center;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.posttextblockcontext.dynamiccomments>a{
+    text-decoration: none;
+    color: var(--fontColor);
+}
+
+.posttextaccount {
+    width: calc(100% - 8vh);
+    vertical-align: top;
+    display: inline-flex;
+    justify-content: space-between;
+    margin-left: 1.5%;
+}
+
+.posttextpost {
+    font-size: 1rem;
+    margin-top: 2%;
+    padding-right: 5%;
+}
+
+#poppostlike.bi-heart-fill{
+    color: red;
+}
+
+.posttextpost>span{
+    line-break: anywhere;
+    color: var(--fontColor);
+}
+
+.posttextposttime{
+    white-space:pre;
+}
+
+.posttextposttime::before{
+    content: '\A';
+}
+
+
+
+#poppostertext{
+    
+    word-wrap: break-word;
+}
+
+#poppostertime{
+    white-space:pre;
+}
+
+#poppostertime::before{
+    content: '\A';
+}
+
+
+#postfollow {
+    display: flex;
+    height: 6%;
+    border-bottom: 2px solid rgba(197, 195, 195, 0.3);
+    padding-left: 3%;
+    font-size: 0.8rem;
+    background-color: var(--bgColor);
+    align-items: center;
+}
+
+#popposttotallike {
+    cursor: pointer;
+}
+
+#popposteraccount,#poppostertime,#popposttotallike,#poppostertext,#poppostlike,#poppostshare,#poppostcollect{
+    color:var(--fontColor);
+}
+
+
+#postmessg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10%;
+    background-color: var(--bgColor);
+
+}
+
+
+#accounticonblock {
+    display: inline-block;
+    border: 1px, solid, black;
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    width: 6%;
+    padding-top: 0%;
+}
+
+.postmessginput {
+    /* margin-top: 1%; */
+    /* margin-left: 4%; */
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 0.6rem 0.6rem 0 0.6rem;
+    width: 95%;
+    height: 70%;
+    font-size: 0.8rem;
+    padding-left: 2%;
+    padding-right: 2%;
+    background-color: var(--bgColor2);
+    color: var(--fontColor);
+}
+
+#postselection {
+    height: 48px;
+    min-height: 48px;
+
+    border-bottom: 2px solid rgba(197, 195, 195, 0.3);
+    background-color: var(--bgColor);
+}
+
+.postselectionblock {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.postselectionicon {
+    display: inline-block;
+    font-size: 1.5rem;
+    margin-left: 2%;
+
+}
+
+#poppostlike:hover {
+    cursor: pointer;
+
+}
+
+#poppostshare:hover {
+    cursor: pointer;
+
+}
+
+#poppostcollect:hover {
+    cursor: pointer;
+
+}
+
+#poppostleftarr {
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: calc(50% - 20px);
+    left: 5%;
+    visibility: hidden;
+    border-radius: 10px;
+    border: 1px;
+    background-color: #ffffffdd;
+
+}
+
+#poppostrightarr {
+    display: flex;
+
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: calc(50% - 20px);
+    right: 5%;
+    position: absolute;
+    border-radius: 10px;
+    border: 1px;
+    visibility: hidden;
+    background-color: #ffffffdd;
+}
+
+@media screen and (max-width: 930px) {
+    #postpopblock {
+        display: flex;
+        width: 75%;
+        padding-top: 60%;
+        position: relative;
+
+    }
+
+    #postblockright {
+        display: block;
+        position: none;
+        top: 50%;
+        right: 0;
+        width: 100%;
+        height: 80%;
+        padding: 0;
+    }
+
+    #postblockleft {
+        display: block;
+        position: none;
+        top: none;
+        left: 0;
+        width: 100%;
+        height: 50%;
+
+    }
+
+    #posttext {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        height: 30%;
+        overflow-x: hidden;
+        border-bottom: 2px solid rgba(197, 195, 195, 0.3);
+    }
+
+    #postblockimg {
+        border-bottom-left-radius: 0px;
+        border-top-right-radius: 15px;
+    }
+
+    #postaccount {
+        border-top-right-radius: 0px;
+        width: 100%;
+    }
+
+    #postmessg {
+        height: 10%;
+        border-bottom-left-radius: 15px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    #postpopblock {
+        display: flex;
+        width: 85%;
+        padding-top: 80%;
+        position: relative;
+    }
+
+    #postblockright {
+        display: block;
+        position: none;
+        top: 50%;
+        right: 0;
+        width: 100%;
+        height: 80%;
+        padding: 0;
+    }
+
+    #postblockleft {
+        display: block;
+        position: none;
+        top: none;
+        left: 0;
+        width: 100%;
+        height: 50%;
+
+    }
+
+    #posttext {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        height: 30%;
+        overflow-x: hidden;
+        border-bottom: 2px solid rgba(197, 195, 195, 0.3);
+    }
+
+    #postblockimg {
+        border-bottom-left-radius: 0px;
+        border-top-right-radius: 15px;
+    }
+
+    #postaccount {
+        
+        border-top-right-radius: 0px;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    #postpopblock {
+        display: flex;
+        width: 85%;
+        padding-top: 110%;
+        position: relative;
+
+    }
+
+    #postblockright {
+        display: block;
+        position: none;
+        top: 50%;
+        right: 0;
+        width: 100%;
+        height: 80%;
+        padding: 0;
+    }
+
+    #postblockleft {
+        display: block;
+        position: none;
+        top: none;
+        left: 0;
+        width: 100%;
+        height: 50%;
+
+    }
+
+    #posttext {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        height: 30%;
+        background-color: var(--bgColor);
+        overflow-x: hidden;
+        border-bottom: 2px solid rgba(197, 195, 195, 0.3);
+    }
+
+    #postblockimg {
+        border-bottom-left-radius: 0px;
+        border-top-right-radius: 15px;
+    }
+
+    #postaccount {
+        border-top-right-radius: 0px;
+        width: 100%;
+    }
+}

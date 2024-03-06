@@ -1,0 +1,343 @@
+/* 個人專頁中間內容 */
+#middleBar {
+    display: flex;
+    padding-top: 3vh;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: var(--bgColor);
+    min-height: 100vh;
+    color: var(--fontColor);
+}
+
+/* 貼文圖片懸浮樣式 */
+.overlayIcon {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(128, 128, 128, 0.5);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    /* 默認隐藏 */
+    transition: opacity 0.3s ease;
+    /* 添加過渡效果 */
+    border-radius: 15px 15px 0 15px;
+}
+
+.postPicContainer:hover .overlayIcon {
+    opacity: 1;
+    /* 懸停時顯示圖標 */
+}
+
+.nav-tabs .nav-link {
+    border-top-color: #FFFFFF00 !important;
+    border-right-color: #FFFFFF00 !important;
+    border-bottom-color: #FFFFFF00 !important;
+    border-left-color: #FFFFFF00 !important;
+    background-color: #FFFFFF00 !important;
+    border-radius: 0;
+    color: var(--fontColor);
+}
+
+.nav-link.active {
+    border-top-color: rgb(222, 226, 230) !important;
+    color: var(--fontColor) !important;
+}
+
+/* 標題區容器 */
+#headArea {
+    /* width: 100%; */
+    /* margin-bottom: -1rem; */
+}
+
+.likeNumArea.bi-heart-fill{
+    color: #FF0000FF;
+}
+
+/* 標題區 */
+#headContent {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2%;
+    /* background-color: aquamarine; */
+}
+
+/* head詳細 */
+#headDetail {
+    width: 70%;
+    /* background-color: red; */
+}
+
+/* 大頭照容器 */
+#headPhotoContainer {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin: 1%;
+    height: 20vw;
+    padding-right: 20vw;
+    min-width: 80px;
+    min-height: 80px;
+    max-width: 200px;
+    max-height: 200px;
+}
+
+#myTabContent {
+    padding-top: 3vh;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    border-top: 1px solid var(--fontColor);
+}
+
+/* 大頭照 */
+#headPhoto {
+    position: absolute;
+    top: 0;
+    right: 0;
+    /* left: 0; */
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border: 2px solid var(--fontColor);
+    border-radius: 24px 24px 0px 24px;
+    min-width: 80px;
+    min-height: 80px;
+    max-width: 200px;
+    max-height: 200px;
+    /* z-index: 10; */
+}
+
+.nav.nav-tabs.justify-content-center {
+    padding-right: 0;
+    border-bottom: 0;
+}
+
+/* Head詳細第一列 */
+#headFirstRow {
+    margin-top: 3%;
+    margin-left: 2%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/* 編輯檔案按鈕 */
+#editProfileButton {
+    margin-right: 2rem;
+    border-radius: 10px 10px 0 10px;
+    /* padding: 5px 10px 5px 10px; */
+}
+
+/* 編輯檔案按鈕的字 */
+#editProfileButton>a {
+    font-size: 1rem;
+}
+
+/* 追蹤、發送訊息及三點按鈕 */
+#headFirstRow>div>button {
+    border-radius: 10px 10px 0 10px;
+}
+
+/* id名字 */
+#idName {
+    margin-right: 2vw;
+    margin-bottom: 0;
+    font-size: 1rem;
+    color: var(--fontColor);
+}
+
+/* 設定按鈕 */
+#personalSettingButton {
+    border: none;
+    background-color: #eef;
+}
+
+/* Head詳細第二列 */
+#headSecondRow {
+    margin-left: 2%;
+    margin-right: 4%;
+    display: flex;
+}
+
+#headSecondRow>div {
+    margin-right: 4%;
+}
+
+/* 貼文數 */
+#postNumArea {
+    font-size: 1rem;
+    color: var(--fontColor);
+}
+
+/* 粉絲數 */
+#fanNumArea {
+    font-size: 1rem;
+    color: var(--fontColor);
+}
+
+/* 追蹤中數 */
+#followingNumArea {
+    font-size: 1rem;
+    color: var(--fontColor);
+}
+
+/* 展示名字 */
+#displayNameArea {
+    margin-left: 2%;
+    flex-grow: 1;
+    font-size: 1rem;
+    color: var(--fontColor);
+}
+
+/* 自我介紹區 */
+#biographyArea {
+    margin-left: 2%;
+    width: 90%;
+    font-size: 1rem;
+    word-wrap: break-word;
+    color: var(--fontColor);
+}
+
+/* 個人專頁分頁按鈕 */
+.nav-item>a {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+/* 個人專頁內容區 */
+.tabcontent {
+    display: flex;
+    justify-content: center;
+}
+
+.card.postPicContainer {
+    width: 31%;
+    margin: 1%;
+    float: left;
+}
+
+/* 貼文圖片容器 */
+.card.postPicContainer {
+    cursor: pointer;
+    border: 1px solid var(--fontColor);
+    border-radius: 15px 15px 0 15px;
+    position: relative;
+    width: 31.3%;
+    padding-top: 31.3%;
+}
+
+/* 貼文圖片 */
+.postPic {
+    background: var(--bgColor2);
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    /* 將圖片固定在父層的大小 */
+    width: 100%;
+    height: 100%;
+    /* 高和寬都填滿容器 */
+    object-fit: cover;
+    /* 和background-image設定background-size: cover一樣，圖片剛好填滿 */
+    object-position: center;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    /* z-index: 10; */
+}
+
+.nav-item>a {
+    color: black;
+    font-size: 1rem;
+}
+
+/* 懸浮樣式字 */
+.overlayIcon>b>i {
+    font-size: 2rem;
+}
+
+#headFirstRow>div>button{
+    margin-right: 1vw;
+}
+
+#headFirstRow>div:nth-child(2)>.btn.following.bg-primary::after{
+    content: "未追蹤";
+}
+
+#headFirstRow>div:nth-child(2)>.btn.following.bg-success::after{
+    content: "追蹤中";
+}
+
+#headFirstRow>div:nth-child(3)>button.btn.btn-info::after{
+    content: "發送訊息";
+}
+
+#headFirstRow>div:nth-child(4)>.btn.blackList.bg-primary::after{
+    content: "加入黑名單";
+}
+
+#headFirstRow>div:nth-child(4)>.btn.blackList.bg-success::after{
+    content: "移出黑名單";
+}
+
+
+@media screen and (max-width : 840px) {
+    .card.postPicContainer {
+        width: 48%;
+        padding-top: 48%;
+    }
+
+    #headFirstRow>div>button{
+        margin-right: 1vw;
+        padding-top: 0;
+        padding-bottom: 0;
+        font-size: 1.3rem;
+    }
+
+    #headFirstRow>div:nth-child(2)>.btn.following.bg-primary::after{
+        content: "\F89A";
+        font-family: 'bootstrap-icons';
+    }
+    
+    #headFirstRow>div:nth-child(2)>.btn.following.bg-success::after{
+        content: "\F89D";
+        font-family: 'bootstrap-icons';
+    }
+    
+    #headFirstRow>div:nth-child(3)>button.btn.btn-info::after{
+        content: "\F24A";
+        font-family: 'bootstrap-icons';
+    }
+    
+    #headFirstRow>div:nth-child(4)>.btn.blackList.bg-primary::after{
+        content: "\F8A9";
+        font-family: 'bootstrap-icons';
+    }
+    
+    #headFirstRow>div:nth-child(4)>.btn.blackList.bg-success::after{
+        content: "\F8A4";
+        font-family: 'bootstrap-icons';
+    }
+}
+
+@media screen and (max-width : 400px) {
+    .card.postPicContainer {
+        width: 100%;
+        padding-top: 100%;
+    }
+
+    #headContent {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}

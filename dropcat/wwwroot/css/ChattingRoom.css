@@ -1,0 +1,339 @@
+#middleBar {
+    /* background-color: #eef; */
+    display: flex;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+p {
+    color: var(--fontColor);
+}
+
+/* 聊天室名單區 */
+#memberArea {
+    min-height: 100vh;
+    /* border-right: 2px solid rgba(132, 129, 128, 0.5); */
+    background-color: var(--bgColor);
+    box-shadow: inset -4px 0 9px -7px var(--fontColor);
+}
+
+/* 聊天名單區 */
+#chattingMemberArea {
+    max-height: 90vh;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    /* margin-left: 1vw; */
+    /* 允許垂直方向上的滾動 */
+    /* background-color: aqua; */
+    /* width: 100%; */
+}
+
+/* 聊天室標題容器 */
+/* #chattingRoomHeadContainer {
+    
+} */
+
+/* 聊天室標題 */
+#chattingRoomHeadContainer>p {
+    font-weight: 700;
+    text-align: center;
+    margin-top: 2%;
+}
+
+/* 個別聊天名單 */
+.chattingMember {
+    display: flex;
+    flex-wrap: nowrap;
+    margin-bottom: 1vh;
+    /* background-color: bisque; */
+}
+.memberContainer{
+	display: flex;
+}
+
+/* 聊天室名單頭貼容器 */
+.chatMemberPicContainer {
+    /* background-color: blueviolet; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+    /* margin: 1%; */
+    /* width: 6vw;
+    padding-top: 6vw; */
+
+    width: 0;
+    height: 5vw;
+    padding-left: 5vw;
+
+    min-width: 64px;
+    min-height: 64px;
+
+    margin-left: 15px;
+
+}
+
+/* 聊天室名單頭貼 */
+.chatMemberPic {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 15% 15% 0 15%;
+    z-index: 10;
+}
+
+/* 顯示名字 */
+.chattingDisplayName {
+    margin-bottom: 0;
+}
+
+/* 聊天回應 */
+.chattingAction {
+    font-size: 0.8rem;
+    white-space: nowrap;
+    /* 防止文本換行 */
+    overflow: hidden;
+    /* 隱藏超出容器的文本 */
+    text-overflow: ellipsis;
+    /* 用省略號表示超出部分 */
+    /* width: 300px; */
+    /* background-color: black; */
+    color: var(--fontColor);
+    width: 80%;
+}
+
+/* 聊天區 */
+#chattingContentArea {
+    /* margin: 0 !important; */
+    /* padding: 0 !important; */
+    max-height: 100vh;
+    background-color: var(--bgColor);
+}
+
+/* 聊天內容標題區 */
+#chattingContentHead {
+    border-bottom: 2px solid rgba(132, 129, 128, 0.5);
+    /* padding: 2%; */
+    max-height: 10vh;
+    /* background-color: aquamarine; */
+}
+
+/* 內容標題頭貼及名字容器 */
+#chattingContentHead>div {
+    /* padding: 1%; */
+    display: flex;
+    align-items: center;
+    height: 100%;
+    /* background-color: yellow; */
+}
+
+/* 聊天內容標題頭貼 */
+/* #chattingContentHead>div>img {
+    width: 5%;
+    height: 80%;
+    border-radius: 15% 15% 0 15%;
+    margin: 0 2%;
+} */
+
+.otherPic {
+    margin-left: 1vw;
+    margin-right: 1vw;
+    margin-top: 4px;
+    width: 8vh;
+    border-radius: 15% 15% 0 15%;
+}
+
+.otherPic::before {
+
+    height: 0;
+    padding-top: 100%;
+}
+
+
+
+/* 聊天內容標題名字 */
+#chattingContentHead>div>div {
+    font-size: 100%;
+    color: var(--fontColor);
+    /* background-color: aqua; */
+}
+
+/* 聊天內容標題區 */
+#chattingContentHead {
+    height: 10vh;
+}
+
+/* 聊天內容區 */
+#contentArea {
+    min-height: 80vh;
+    max-height: 80vh;
+    /* background-color: purple; */
+    overflow-y: auto;
+}
+
+#receivedMessages > p {
+	text-align: center;
+	margin-top: 30%;
+}
+/* 聊天新時間點 */
+.currentTime {
+    padding: 2% 0 2% 0;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--fontColor);
+}
+
+/* 我方聊天內容容器 */
+.myselfChatting {
+    display: flex;
+    margin: 1vh 1%;
+
+    /* background-color: red; */
+}
+
+/* 我方聊天內容 */
+.myselfChatting>div {
+    margin-left: auto;
+    padding: 1% 2%;
+    font-size: 1rem;
+    background-color: rgb(52, 160, 237);
+    /* border: 3px solid rgb(20, 72s, 108); */
+    border-radius: 12px;
+    max-width: 50%;
+    word-wrap: break-word;
+}
+
+/* 對方聊天內容容器 */
+.otherChatting {
+    display: inline-block;
+    margin: 1vh 1%;
+
+}
+
+/* 對方聊天內容 */
+.otherChatting {
+    margin-right: auto;
+    padding: 1vh 2%;
+    font-size: 1rem;
+    background-color: #dddddd;
+    /* border: 3px solid black; */
+    border-radius: 12px;
+    max-width: 50%;
+    word-wrap: break-word;
+}
+
+/* 發言區 */
+#commentArea {
+	
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 10vh;
+    /* background-color: blue; */
+}
+
+/* 訊息輸入框容器 */
+#commentArea>div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+    /* padding-left: 4%; */
+    /* background-color: yellow; */
+}
+
+/* 訊息輸入框 */
+#messageToSend{
+    padding: 0px 0px 0px 0px;
+    border: 0;
+    width: 75%;
+    height: 60%;
+    border-radius: 0.6rem 0 0 0.6rem;
+    padding-left: 2%;
+    color: var(--fontColor);
+    background-color: var(--bgColor2);
+}
+
+input::placeholder {
+    font-size: 16px;
+    /* 設定placeholder文字的大小 */
+    color: var(--fontColor);
+    /* 設定placeholder文字的顏色 */
+}
+
+/* 訊息送出鈕 */
+#sendMessageButton {
+    width: 60px;
+    height: 60%;
+    border-radius: 0 0.6rem 0 0;
+    min-width: 36px;
+    margin-left: 0;
+    /* padding: 0 2%; */
+    background-color: rgb(52, 160, 237);
+    border: 0;
+    /* color: var(--fontColor); */
+    user-select: none;
+}
+
+#sendMessageButton:hover {
+    background-color: hsl(205, 84%, 64%);
+}
+
+#sendMessageButton:active {
+    background-color: hsl(205, 84%, 40%);
+}
+
+
+#chattingMember>div {
+    display: flex;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 6px;
+    padding-top: 6px;
+}
+#chattingMember {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+}
+.memberContainer:hover {
+	cursor: pointer;
+    background-color: #88888888;
+}
+
+#chattingMemberArea>.chattingMember.row>div.col-7 {
+    padding: 0;
+}
+
+#memberArea {
+    padding-left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+}
+
+.chattingDisplayActionBox {
+    position: relative;
+    left: 5%;
+    width: calc(100% - 64px);
+    padding-left: 0.5vw;
+}
+
+@media screen and (max-width: 700px) {
+    .chattingAction {
+        display: none;
+    }
+}

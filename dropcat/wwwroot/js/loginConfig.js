@@ -21,7 +21,7 @@ login.addEventListener("submit", function(event) {
 		success: function() {
 			console.log("登入成功")
 			//alert("登入成功");
-			window.location.href = "/Home/UserList";
+			window.location.href = "/Home/mainPage";
 
 		},
 		error: function(xhr) {

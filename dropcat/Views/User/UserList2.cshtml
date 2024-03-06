@@ -4,31 +4,38 @@
 
 <div class="container-fluid">
     <div>
-        <h2>User</h2>       
+        <h2>User</h2>
         <form method="post">
-            <button class="btn btn-success" asp-action="ExportExcel">輸出Excel</button>
+            <button class="btn btn-success" type="submit" asp-action="ExportExcel">輸出Excel</button>
+            <button class="btn btn-danger" asp-action="">輸出PDF</button>
         </form>
+        姓名：<input type="text" placeholder="請輸入關鍵字" />
+        學歷：
+        <select>
+            <option>未選擇</option>
+            <option>小學</option>
+            <option>中學</option>
+            <option>高中</option>
+            <option>大學</option>
+            <option>碩士</option>
+        </select>
+        <button>查詢</button>
+
         <hr />
 
         <div>
             <table>
                 <tr class="border">
                     <th class="border">ID</th>
-                    <th class="border">Profile photo</th>
-                    <th class="border">Account</th>
                     <th class="border">Name</th>
-                    <th class="border">Phone</th>
-                    <th class="border">Email</th>
+                    <th class="border">學歷</th>
                 </tr>
                 @{
                     foreach (var users in Model)
                     {
                         <tr class="border">
                             <th class="border">@users.id</th>
-                            <th class="border"><img src="@users.usericon" style="width:100px;height:100px" /></th>
-                            <th class="border">@users.userAccount</th>
                             <th class="border">@users.username</th>
-                            <th class="border">@users.phonenumber</th>
                             <th class="border">@users.email</th>
                         </tr>
                     }
@@ -38,6 +45,3 @@
     </div>
 </div>
 
-<script>
-
-</script>

@@ -79,5 +79,7 @@ namespace dropcat.Models
         public string? resetToken { get; set; }
 
         public DateTime? tokenTime { get; set; }
+
+        public string lineid { get; set; }
     }
 }

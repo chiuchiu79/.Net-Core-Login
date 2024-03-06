@@ -1,0 +1,958 @@
+:root {
+    --bgColor: rgb(238, 238, 238);
+    --bgColor2: rgb(221, 221, 221);
+    --fontColor: rgb(33, 37, 41);
+    --BCcrossbutton: none;
+}
+
+[data-theme="dark"] {
+    --bgColor: rgb(46, 48, 53);
+    --bgColor2: rgb(71, 73, 77);
+    --fontColor: rgb(189, 189, 189);
+    --BCcrossbutton: invert(1) grayscale(100%) brightness(200%);
+}
+
+[data-theme="light"] {
+    --bgColor: rgb(238, 238, 238);
+    --bgColor2: rgb(221, 221, 221);
+    --fontColor: rgb(33, 37, 41);
+    --BCcrossbutton: none;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bgColor: rgb(46, 48, 53);
+        --bgColor2: rgb(71, 73, 77);
+        --fontColor: rgb(189, 189, 189);
+        --BCcrossbutton: invert(1) grayscale(100%) brightness(200%);
+    }
+
+    [data-theme="light"] {
+        --bgColor: rgb(238, 238, 238);
+        --bgColor2: rgb(221, 221, 221);
+        --fontColor: rgb(33, 37, 41);
+        --BCcrossbutton: none;
+    }
+}
+
+html,
+body {
+    margin: 0px;
+    height: 100vh;
+    font-size: calc(12px + 0.5vw);
+    /* transition: 0.5s font-size; */
+    /* 1em = 20px , 之後可以藉由 @media 改這個大小來改所有文字大小 */
+
+    background-color: var(--bgColor);
+}
+
+
+#middleBar {
+    background-color: var(--bgColor);
+    min-height: 100vh;
+}
+
+.container-fluid {
+    background-color: #00000000;
+}
+
+#leftBar,
+#rightBar {
+    pointer-events: none;
+}
+
+#FixedLeft {
+    z-index: 920;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    left: 0px;
+    /* min-width: 160px; */
+    width: 16.666667%;
+    background-color: var(--bgColor);
+    height: 100%;
+    box-shadow: inset -4px 0 9px -7px var(--fontColor)
+}
+
+#FixedLeft,
+#FixedRight {
+    overflow-y: auto;
+}
+
+#logo>a{
+    -webkit-user-drag: none;
+}
+
+#logo>a>img {
+
+    width: 10vw;
+    height: 10vw;
+    min-height: 64px;
+    min-width: 64px;
+    max-height: 100px;
+    max-width: 100px;
+    -webkit-user-drag: none;
+}
+
+a {
+    text-decoration: none;
+    color: var(--fontColor);
+    cursor: pointer;
+}
+
+#FixedRight {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+    position: fixed;
+    right: 0px;
+    width: 25%;
+    background-color: var(--bgColor);
+    box-shadow: inset 4px 0 9px -7px var(--fontColor);
+    height: 100%;
+}
+
+.rightBox {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    text-decoration: none;
+    color: var(--fontColor);
+    font-size: 1.5em;
+}
+
+#userProfile {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 6vh;
+    width: 80%;
+    height: 30%;
+    min-height: 300px;
+    border-bottom: 1px #70707088 solid;
+    margin-bottom: 1vh;
+}
+
+#userProfilePicture {
+    width: 80px;
+    height: 80px;
+    border-radius: 24px 24px 0px 24px;
+}
+
+#userName {
+    display: flex;
+    text-decoration: none;
+    color: var(--fontColor);
+    align-items: center;
+    font-size: 1.2em;
+    width: 70%;
+    height: 40px;
+    padding-left: 2%;
+}
+
+#rightFooter {
+    width: 80%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    display: flex;
+}
+
+.rightFooterItem {
+
+    font-size: 0.8rem;
+    text-decoration: none;
+    color: var(--fontColor);
+}
+
+#logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3vh;
+    min-height: 100px;
+    width: 80%;
+    height: 10%;
+}
+
+.leftSelectAble {
+    text-decoration: none;
+    justify-content: center;
+    display: flex;
+    margin-top: 2vh;
+    width: 80%;
+    height: 50px;
+    border-radius: 16px 16px 0px 16px;
+    transition: background-color 0.1s;
+    margin-bottom: 0px;
+}
+
+.leftSelectAble:hover {
+    cursor: pointer;
+    background-color: #88888844;
+}
+
+
+.leftIcon {
+    width: 48px;
+    height: 48px;
+}
+
+.leftIconText {
+
+    display: flex;
+    width: calc(100% - 48px);
+    height: 48px;
+    color: var(--fontColor);
+    align-items: center;
+    justify-content: flex-start;
+    white-space: nowrap;
+    padding-left: 0.2vw;
+    font-size: 1.2rem;
+}
+
+.leftIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--fontColor);
+    font-size: 30px;
+}
+
+#otherBar {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin-top: 0vh;
+    margin-bottom: 2vh;
+    width: 100%;
+    height: 100%;
+}
+
+#otherBarSetting {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin-top: 0vh;
+    margin-bottom: 2vh;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+#phoneMenuButton {
+    z-index: 910;
+    height: 12vw;
+    width: 12vw;
+
+    min-width: 48px;
+    min-height: 48px;
+
+    max-width: 72px;
+    max-height: 72px;
+
+    background-color: var(--bgColor);
+    bottom: 5px;
+    left: -0.2vw;
+    font-size: 2em;
+    position: fixed;
+    display: none;
+    border-radius: 0px 5vw 5vw 0px;
+    align-items: center;
+    justify-content: center;
+    padding-right: 3.5vw;
+    border: 1px gray solid;
+    box-shadow: inset -7px 0 9px -7px var(--fontColor);
+}
+
+#phoneMenuButton>i {
+    color: var(--fontColor);
+    padding-left: 2vw;
+}
+
+
+#popOverBar {
+    padding-top: 2vh;
+    padding-bottom: 1vh;
+    display: none;
+    position: fixed;
+    flex-direction: column-reverse;
+    align-items: center;
+    left: 1%;
+    bottom: 75px;
+    z-index: 930;
+    width: 20vw;
+    height: auto;
+    max-width: 14.6667%;
+    min-width: 170px;
+    min-height: 30px;
+    border-radius: 24px 24px 0px 24px;
+    background-color: var(--bgColor);
+    box-shadow: inset 0px 0px 7px 0px var(--fontColor);
+    /* border:1px solid black; */
+}
+
+#popOverBar>.leftSelectAble {
+    margin-top: 0;
+    margin-bottom: 1vh;
+}
+
+#settingBox {
+    z-index: 900;
+    display: none;
+    position: fixed;
+    width: 83.33333333%;
+    height: 100vh;
+    top: 0;
+    right: 0;
+    background-color: var(--bgColor);
+}
+
+#settingBar {
+    padding-top: 3vh;
+    width: 20%;
+    background-color: var(--bgColor);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: inset -4px 0 9px -7px var(--fontColor);
+
+}
+
+#settingBlock {
+    padding: 0 2vw;
+    width: 80%;
+    background-color: var(--bgColor);
+    overflow-y: auto;
+}
+
+.leftSelectAbleTitle {
+    padding-right: 60%;
+}
+
+#leaveSetting {
+    text-decoration: none;
+}
+
+/* 通知 */
+
+.form-check.my-2 {
+    display: flex;
+    align-items: center;
+}
+
+.form-check.my-2>.form-check-input {
+    margin-top: 0;
+    margin-right: 0.5vw;
+}
+
+#informSettingBlock {
+    display: none;
+}
+
+.my-2>.fw-bold,
+.my-2>.form-check-label {
+    color: var(--fontColor);
+}
+
+.my-2>.fw-bold {
+    font-size: 2rem;
+}
+
+.my-2>.form-check-label {
+    font-size: 1.5rem;
+}
+
+#v-pills-home>hr,
+.offcanvas.offcanvas-start.show>hr {
+    border-top: var(--fontColor) solid 1px;
+}
+
+
+.offcanvas.offcanvas-start,
+.offcanvas.showing,
+#zzzzzzzzzz>div,
+.card.mb-3.border-0 {
+    background-color: var(--bgColor);
+}
+
+.offcanvas-header>.btn-close.text-reset,
+.card-body>.fw-bold,
+.offcanvas-title.fw-bold,
+.fw-bold.ms-3,
+.card-body>p.card-text,
+div.card-body>small,
+.card-body>div {
+    color: var(--fontColor);
+}
+
+.card-text>small {
+    opacity: 0.5;
+}
+
+.col-8>.card-body,
+.row.g-0>.col-4 {
+    background-color: var(--bgColor2);
+    font-size: 16px;
+}
+
+.row.g-0>.col-4 {
+    position: relative;
+    padding-top: 33.33333333%;
+    border-radius: 12px 0 0 12px;
+}
+
+.row.g-0>.col-4>img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 12px 0 0 12px;
+}
+
+.col-8>.card-body {
+    border-radius: 0 12px 0 0;
+    padding: 4px 0px 0px 8px;
+    min-height: 100%;
+}
+
+.col-8>.card-body>p.card-text {
+    margin-bottom: 4px;
+}
+
+.col-8>.card-body>p.card-text.fw-bold {
+    font-size: 1.05rem;
+}
+
+.card.mb-3.border-0>.row.g-0 {
+    border-radius: 24px 24px 0px 24px;
+}
+
+.card.mb-3.border-0 {
+    max-width: 500px;
+}
+
+.card.mb-3.border-0>.row.g-0>.col-8 {
+    max-height: 125px;
+    overflow: auto;
+    background-color: var(--bgColor2);
+    border-radius: 0px 24px 0px 0px;
+}
+
+#search {
+    background-color: var(--bgColor2);
+    color: var(--fontColor);
+    border: 1px solid rgb(118, 118, 118);
+}
+
+#search::placeholder {
+    color: var(--fontColor);
+}
+
+button.btn-close.text-reset,
+#closeButtoncross {
+    filter: var(--BCcrossbutton);
+}
+
+h5.fw-bold {
+    color: var(--fontColor);
+}
+
+#toastBox {
+    position: fixed;
+    z-index: 400;
+    right: 1%;
+    bottom: 1%;
+    width: 300px;
+}
+
+#toastBox>.toast>.toast-header>img {
+    height: 36px;
+}
+
+#toastBox>.toast>.toast-body {
+    cursor: pointer;
+}
+
+#toastBox>.toast>.toast-header {
+    background-color: var(--bgColor);
+    color: var(--fontColor);
+    border-bottom:none;
+}
+
+#toastBox>.toast>.toast-body {
+    background-color: var(--bgColor2);
+    color: var(--fontColor);
+}
+
+#thisWeek,#thisMonth,#longTimeAgo{
+    display: flex;
+    flex-direction: column-reverse;
+    flex-wrap: nowrap;
+}
+
+/* 通知/搜尋 */
+
+/* 個人檔案 */
+
+#profileSettingBlock {
+    overflow-y: auto;
+    display: flex;
+}
+
+#settingpersoninfo {
+    display: flex;
+    justify-content: center;
+    padding-top: 5vh;
+    width: 100%;
+}
+
+.personalinfofirstlaypsetting {
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+.personalinfosecondlaypsetting {
+    padding-top: 10%;
+    padding-bottom: 10%;
+}
+
+#settingpersoninfoblock {
+    width: 100%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.personalinfotitle {
+    color: var(--fontColor);
+    font-weight: bold;
+}
+
+#personalinfoinputarea {
+    display: flex;
+    padding: 2%;
+    width: 100%;
+    height: 200px;
+    border-radius: 20px;
+    border: 1px solid gray;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    overflow: hidden;
+    background-color: var(--bgColor2);
+}
+
+#personalinfoaccountname {
+    display: block;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--fontColor);
+}
+
+#personalinfoaccountusername {
+    display: block;
+    font-weight: lighter;
+    line-height: 0.5px;
+    font-size: 1.5rem;
+    color: var(--fontColor);
+}
+
+#personalinfoinputtext {
+    width: 100%;
+    height: 70%;
+    border: 0px;
+    font-size: 1.5rem;
+    border-radius: 16px 16px 0px 16px;
+    padding: 8px;
+    outline: none;
+    resize: none;
+    background-color: var(--bgColor);
+    color: var(--fontColor);
+}
+
+#personalinfoinputtext::placeholder {
+    color: var(--fontColor);
+    font-size: 1.5rem;
+}
+
+#personalinfoinputlength {
+    position: relative;
+    display: block;
+    right: 20px;
+    bottom: 0px;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+#personalinfoinputlength>span {
+    color: var(--fontColor);
+}
+
+#personalinfoaccountimgchange {
+    display: flex;
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid gray;
+    padding: 1%;
+    min-height: 100px;
+    overflow: hidden;
+    background-color: var(--bgColor2);
+}
+
+#personalinfogender {
+    width: 100%;
+    height: 40px;
+    font-size: 1.5rem;
+    border-radius: 12px 12px 0px 12px;
+    padding-left: 3%;
+
+    background-color: var(--bgColor2);
+    color: var(--fontColor);
+    border: 1px solid var(--bgColor2);
+}
+
+
+#personalinfosettingaccount {
+
+    height: 10%;
+    border-top-right-radius: 15px;
+    border-bottom: 2px solid rgba(197, 195, 195, 0.3);
+    background-color: white;
+    padding-left: 5%;
+    padding-top: 5%;
+}
+
+#personalinfosettingaccountimgblock {
+    position: relative;
+    width: 20%;
+    min-width: 93.19px;
+    overflow: hidden;
+}
+
+#personalinfosettingaccountimgblock:before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+
+#personalinfosettingaccountimg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+#personalinfouploadbutton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 128px;
+    min-height: 40px;
+}
+
+#personalinfosettingaccountnameblock {
+    display: flex;
+    flex-wrap: wrap;
+    vertical-align: top;
+    margin-left: 1.5%;
+    width: 100%;
+}
+
+
+.personalinfosettingaccountimgchangeblock {
+    display: flex;
+    justify-content: end;
+    width: 100%;
+}
+
+.personalinfoupladimgbtndiv {
+    width: 50%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.personalinfoupladimgbtn {
+    width: 60%;
+    height: 50%;
+    border-radius: 15px;
+    /* line-height: 45px; */
+    font-size: 1rem;
+}
+
+.personalinfosubmit {
+    font-size: 1.5rem;
+    border-radius: 15px;
+}
+
+@media screen and (max-width: 600px) {
+
+
+    #settingpersoninfoblock {
+        padding-left: 1%;
+        padding-right: 1%;
+    }
+
+    #personalinfoaccountname {
+        font-size: 1.5rem;
+    }
+
+    #personalinfoaccountusername {
+        font-size: 1rem;
+    }
+}
+
+/* 個人檔案 */
+
+/* 隱私 */
+
+#privacySettingBlock {
+    display: none;
+}
+
+/* 隱私 */
+
+#privacy {
+    margin-top: 12px;
+}
+
+#privacy h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--fontColor);
+}
+
+#privacy h5 {
+    font-size: 1.25rem;
+    color: var(--fontColor);
+}
+
+#openAccount {
+    margin-top: 3%;
+}
+
+#openAccount input {
+    font-size: 25px;
+    margin-left: 1px
+}
+
+#blockList {
+    margin-top: 3%;
+}
+
+#blockList span {
+    margin-left: 1%;
+}
+
+#blockList button {
+    margin-left: 5%;
+}
+
+.blockImage {
+    margin-top: 2%;
+    margin-left: 3%;
+}
+
+.blockImg {
+    clip-path: circle(50% at 50% 50%);
+    width: 50px;
+    height: 50px;
+}
+
+.blockImage>span {
+    color: var(--fontColor);
+}
+
+#openAccount>.form-check.form-switch {
+    padding-left: 0;
+}
+
+/* 隱私 */
+/* 粉絲追蹤 */
+
+#boxBlackOut {
+    position: fixed;
+    display: flex;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0%;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100vh;
+    display: none;
+    z-index: 1040;
+    justify-content: center;
+    align-items: center;
+}
+
+#FollowingBox,
+#FansBox {
+    z-index: 1060;
+    display: none;
+    flex-direction: column;
+    color: var(--fontColor);
+    width: 40%;
+    min-width: 300px;
+    max-width: 500px;
+    height: 70%;
+}
+
+#UploadBox {
+    z-index: 1060;
+    display: none;
+    flex-direction: column;
+    color: var(--fontColor);
+    width: 40%;
+    min-width: 300px;
+    max-width: 500px;
+    max-height: 600px;
+    height: 90%;
+}
+
+#dragAndUploadBox {
+    display: flex;
+    width: 80%;
+    height: 80%;
+    border: 1px dashed var(--fontColor);
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+#UploadBox>.mapMid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#FollowingBox>.mapMid,
+#FansBox>.mapMid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+}
+
+.mapMidUserinfo {
+    display: flex;
+    width: 100%;
+    max-height: 100px;
+    margin-top: 2%;
+}
+
+.mapMidUsericonBox {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    height: 0px;
+    width: 15%;
+    padding-top: 15%;
+    /* min-width: 80px;
+    min-height: 80px;
+    max-width: 200px;
+    max-height: 200px; */
+}
+
+.mapMidUsericon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 12px 12px 0 12px;
+}
+
+.mapMidUsername {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    left: 2.5%;
+    padding-left: 6px;
+}
+
+.mapMidUsername>a:first-child {
+    font-weight: bold;
+}
+
+.mapMidUsername>a:last-child {
+    font-size: 0.8rem;
+}
+
+.mapMidButton {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 35%;
+}
+
+#dragAndUploadBox>label {
+    display: flex;
+    border-radius: 16px 16px 0px 16px;
+    padding-left: 4px;
+    padding-right: 8px;
+    background-color: #88888844;
+}
+
+#dragAndUploadBox>label:hover {
+    cursor: pointer;
+    background-color: var(--bgColor);
+}
+
+#dragAndUploadBox.highlightDropArea {
+    border: 1px solid var(--fontColor);
+}
+
+#UploadBox>.mapTop,
+#FansBox>.mapTop,
+#FollowingBox>.mapTop {
+    justify-content: center;
+    color: var(--fontColor);
+}
+
+#UploadBox>.mapTop>span,
+#FansBox>.mapTop>span,
+#FollowingBox>.mapTop>span {
+    font-size: 2rem;
+}
+
+/* 粉絲追蹤 */
+
+@media screen and (max-width: 1200px) {
+    #rightFooter {
+        flex-direction: column-reverse;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+
+    #leaveSetting {
+        padding-bottom: 15vh;
+    }
+}
+
+@media screen and (max-width: 250px) {
+    .leftSelectAble {
+        width: 100%;
+    }
+}

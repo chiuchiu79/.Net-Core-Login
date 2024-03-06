@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Lilita+One&family=Noto+Sans+TC&family=Yatra+One&display=swap');
+
+* 
+{
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans TC', sans-serif;
+}
+
+h1 
+{
+    font-family: 'Yatra One', sans-serif;
+    font-size: 10rem;
+}
+
+span
+{
+    font-family: 'Yatra One', sans-serif;
+    font-size: 3rem;
+
+}
+
+
+#useFontFamily
+{
+    font-family: 'Yatra One', sans-serif;
+    font-size: 7rem;
+
+}
+
+
+
+
+
+body 
+{
+    margin: 0px;
+    height: 100vh;
+    font-size: 20px;
+    transition: 0.5s font-size;
+    /* 1em = 20px , 之後可以藉由 @media 改這個大小來改所有文字大小 */
+}
+
+
+
+.container-fluid
+{
+    background-image: linear-gradient(25deg, #f6008a, #f45c7e, #ef8671, #e7a961);
+}
+
+.rowRed
+{
+    background-image: linear-gradient(25deg, #f6008a, #f45c7e, #ef8671, #e7a961);
+
+}
+
+
+a
+{
+    text-decoration: none;
+}
+
+
+
+
+#registerInput 
+{
+    /* width: 462px;
+    height: 762.4px; */
+    border: 1px solid #7D7C7C;
+    border-radius: 20px 20px 0 20px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+    /* margin-top: 15%;
+    margin-left: 10%; */
+}

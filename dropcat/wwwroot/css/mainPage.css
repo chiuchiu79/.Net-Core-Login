@@ -1,0 +1,340 @@
+/* 這裡你可以寫你的css */
+#middleBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.timeLine,
+.user_font,
+span {
+    color: var(--fontColor);
+}
+
+.postContainer {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    list-style-type: none;
+}
+
+.con {
+    position: relative;
+    margin-top: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    /* 將圖片固定在父層的大小 */
+    width: 100%;
+    height: 100%;
+    /* 高和寬都填滿容器 */
+    object-fit: cover;
+    /* 和background-image設定background-size: cover一樣，圖片剛好填滿 */
+    object-position: center;
+    border: 1px solid gray;
+    border-radius: 2vw 2vw 0vw 2vw;
+
+}
+
+li:last-child>.con {
+    margin-bottom: 400px;
+}
+
+.user_head {
+    margin-left: 10%;
+}
+
+.mapMidUsername {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    left: 2.5%;
+    padding-left: 6px;
+}
+
+.user_head img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 30% 30% 0 30%;
+    margin-right: 20px;
+}
+
+.user_font {
+
+    font-size: 16px;
+}
+
+#postContent {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.timeLine {
+    width: 100%;
+    display: flex;
+    font-size: 18px;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-right: 10%;
+}
+
+.pic_pos {
+    margin: 10px 30px 30px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pic_screen {
+    position: relative;
+    width: 100%;
+    padding-top: 100%;
+    cursor: pointer;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: black;     */
+    /* border-radius: 3vw 3vw 0 3vw;   */
+}
+
+.pic_size {
+    background-color: var(--bgColor2);
+    border-radius: 2vw 2vw 0 2vw;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.icon_pos {
+    margin-left: 36px;
+}
+
+.commentIcon {
+	cursor: pointer;
+	color: var(--fontColor);
+    margin-right: 10px;
+}
+
+.bi-heart-fill{
+    color: red;
+}
+
+.context {
+    font-size: 16px;
+    margin-left: 32px;
+    margin-right: 32px;
+    padding-top: 12px;
+    color: var(--fontColor);
+    padding-left: 4px;
+    padding-right: 4px;
+    word-wrap: break-word;
+}
+
+.context p {
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+
+.convert {
+    font-size: 14px;
+    margin-left: 37px;
+    padding-bottom: 4px;
+}
+
+button[data-bs-toggle="modal"],
+#seeMore {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    padding-top: 12px;
+    cursor: pointer;
+    color: var(--fontColor);
+}
+
+.convert>div>.postBlock,
+.likeList {
+    padding: 0;
+}
+
+/* 關閉按鈕位置 */
+/* .btn-close {
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 1rem;
+    opacity: 0;
+    animation: fadeIn 0s forwards;            
+    animation-delay: 0s;  
+         
+} */
+
+/* 防止出現按鈕閃現的BUG */
+/* @keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+} */
+
+.comment {
+    /* margin-left: 50px; */
+    border-radius: 0.6rem 0.6rem 0 0.6rem;
+    width: 100%;
+    height: 2rem;
+    font-size: 1rem;
+    padding-left: 0.5vw;
+    padding-right: 0.5vw;
+    background-color: var(--bgColor2);
+    color: var(--fontColor);
+    padding-top: 5px;
+    resize: none;
+    overflow-y: hidden;
+}
+
+.input_pos {
+    margin-top: 12px;
+    display: flex;
+    justify-content: center;
+}
+
+.commentbox {
+    width: 90%;
+}
+
+/* .endLine {
+    background-color: var(--fontColor); 
+    width: 100%; 
+    height: 2px; 
+    margin: 2rem 0px 2rem;
+} */
+
+.end_img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.end_img img {
+    width: 90px;
+    /* 設定圖片大小，根據您的需求調整 */
+    height: 90px;
+    object-fit: cover;
+    border-radius: 50%;
+    /* 若需呈現圓形圖片，加上這行 */
+}
+
+.text_pos {
+    margin-top: 18px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.text_pos>p {
+    color: var(--fontColor);
+}
+
+a {
+    text-decoration: none;
+    color: var(--fontColor);
+    cursor: pointer;
+}
+
+.truncate_text {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 4;
+    color: var(--fontColor);
+    -webkit-box-orient: vertical;
+    word-wrap: normal;
+}
+
+#poppostlike,
+#poppostshare,
+#poppostcollect {
+    color: var(--fontColor);
+}
+
+#poppostlike.bi-heart-fill{
+    color: red;
+}
+
+/* 此為按讚彈出框 */
+
+.likeList {
+    border: none;
+    background: none;
+    color: gray;
+    padding: 0;
+}
+
+.users {
+    margin-top: 5px;
+    margin-bottom: 15px;
+    align-items: center;
+}
+
+
+
+.following {
+    height: 40px;
+    width: 100px;
+}
+
+.modal-content {
+    border-radius: 1rem 1rem 0 1rem !important;
+}
+
+.btn.nextBtn {
+    background-color: rgb(128 128 128 / 70%);
+}
+
+.btn.prevBtn {
+    background-color: rgb(128 128 128 / 70%);
+}
+
+
+@media screen and (max-width: 300px) {
+    .con>.d-flex {
+        flex-wrap: wrap;
+    }
+
+    .timeLine {
+        width: auto;
+        display: flex;
+        font-size: 18px;
+        flex-direction: row;
+        justify-content: flex-end;
+        margin-left: 10%;
+    }
+}

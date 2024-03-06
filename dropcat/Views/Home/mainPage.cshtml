@@ -1,0 +1,279 @@
+﻿@{
+    ViewData["Title"] = "Main";
+}
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="~/img/logo.png">
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+    </link>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"></script>
+
+    <script src="https://rawgit.com/leizongmin/js-xss/master/dist/xss.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="~/css/styleTemplate.css">
+    <link rel="stylesheet" href="~/css/mainPage.css">
+    <link rel="stylesheet" href="~/css/stylepostpop.css">
+    <link rel="stylesheet" href="~/css/user_Carousel.css">
+</head>
+
+<body>
+
+    <div id="FixedLeft">
+        <!-- 這是左邊的BAR，刪掉你就沒有左邊的BAR了 -->
+    </div>
+
+    <div id="FixedRight">
+        <!-- 這是右邊的BAR，你可以把這個Div刪除得到額外的空間。 -->
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div id="leftBar" class="col-2">
+                <!-- 這裡面的東西通常看不到 -->
+                <!-- FixedLeft 佔住的空間  -->
+            </div>
+            <div id="middleBar" class="col-7">
+                <!-- 背景顏色 #eef 會呈現 #middleBar 目前的大小 -->
+                <!-- 這裡是中間，隨便你寫 -->
+                <div class="user_carousel d-flex col-12">
+                    <div id="carouselContainer" class="user_container">
+                        <!-- 以下是畫面架構，可以在這邊先停整再丟到JS裡面 -->
+                        <!-- <div class="user_content">
+                            <div class="user_head"><img src="./img/貓片.jpg" alt=""></div>
+                            <div class="userName"><a href="">3</a></div>
+                        </div>
+                        <div class="user_content">
+                            <div class="user_head"><img src="./img/貓片.jpg" alt=""></div>
+                            <div class="userName"><a href="">3</a></div>
+                        </div>-->
+                    </div>
+                    <div id="carouselLeftBtn" class="btnContainer me-auto">
+                        <button class="btn prevBtn"><i class="bi bi-chevron-left"></i></button>
+                    </div>
+                    <div id="carouselRightBtn" class="btnContainer ms-auto">
+                        <button class="btn nextBtn"><i class="bi bi-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="postContainer">
+                    <ul id="postContent">
+                        <!-- 以下是畫面架構，可以在這邊先調整再丟到JS裡面 -->
+                        <!--                        <li>-->
+                        <!--                            <div class="con">-->
+                        <!--                                <div class="d-flex">-->
+                        <!--                                    <a class="user_head" href=""><img src="./img/貓片.jpg" alt=""></a>-->
+                        <!--                                    <div class="user_font">-->
+                        <!--                                        <a class="user_name" href="../Personal Page/PersonalPageForOthers.html">aaa</a>-->
+                        <!--                                        <br>-->
+                        <!--                                        cat_dog-->
+                        <!--                                    </div>-->
+                        <!--                                    <div class="timeLine">1年前</div>-->
+                        <!--                                </div>-->
+                        <!--                                <div class="pic_pos">-->
+                        <!--                                    <div class="pic_screen postBlock">-->
+                        <!--                                        <img class="pic_size" src="./img/貓片.jpg" alt="">-->
+                        <!--                                    </div>-->
+                        <!--                                </div>-->
+                        <!--                                <div class="info ">-->
+                        <!--                                    <div class="icon_pos d-flex" style="margin-top: -20px;">-->
+                        <!--                                        <form action="">-->
+                        <!--                                            <i id="poppostlike" class="bi bi-heart commentIcon"-->
+                        <!--                                                style="font-size: 25px;"></i>-->
+                        <!--                                            <i id="poppostshare" class="bi bi-box-arrow-right commentIcon"-->
+                        <!--                                                style="font-size: 25px;"></i>-->
+                        <!--                                            <i id="poppostcollect" class="bi bi-bookmark commentIcon"-->
+                        <!--                                                style="font-size: 25px;"></i>-->
+                        <!--                                        </form>-->
+                        <!--                                    </div>-->
+                        <!--                                    <div class="context ">-->
+                        <!--                                        <p id="truncateId1" class="truncate_text">-->
+                        <!--                                            我是可愛的小貓咪我是可愛的小貓咪我是可愛的小貓咪我是可愛的小-->
+                        <!--                                            <span></span>貓咪我是可愛的小貓咪我是可愛的小貓咪我是可愛的小貓咪我是可愛的小貓咪-->
+                        <!--                                            我是可愛的小貓咪我是可愛的小貓咪我是可愛的小貓咪我是可愛的小貓咪-->
+                        <!--                                            我是可愛的小貓咪我是可愛的小貓咪我是可愛的小貓咪-->
+                        <!--                                            我是可愛的小貓咪我是可愛的小貓咪我是可愛的小貓咪我是可愛的小貓咪我是可愛的小貓咪-->
+                        <!--                                            我是可愛的小貓咪我是可愛的小貓咪我是可愛的小貓咪-->
+                        <!--                                        </p>-->
+                        <!--                                        <div>-->
+                        <!--                                            <a style="color: blue !important;" onclick="toggleTruncate('truncateId1')">-->
+                        <!--                                                更多-->
+                        <!--                                            </a>-->
+                        <!--                                        </div>-->
+                        <!--                                        <div>-->
+                        <!--                                            <button data-bs-toggle="modal" data-bs-target="#myModal"-->
+                        <!--                                                style="border: none; background: none; color:gray; padding: 0;">-->
+                        <!--                                                9.99K個讚-->
+                        <!--                                            </button>-->
+                        <!--                                        </div>-->
+                        <!--                                    </div>-->
+                        <!--                                    <div class="convert">-->
+                        <!--                                        <div>-->
+                        <!--                                            <button class="postBlock" data-bs-toggle="modal"-->
+                        <!--                                                data-bs-target="#exampleModal" onclick="">-->
+                        <!--                                                ${}則留言-->
+                        <!--                                            </button>-->
+                        <!--                                        </div>-->
+                        <!--                                    </div>-->
+                        <!--                                    <div class="input_pos">-->
+                        <!--                                        <form action="">-->
+                        <!--                                            <input class="comment" type="text" placeholder="留言...">-->
+                        <!--                                        </form>-->
+                        <!--                                    </div>-->
+                        <!--                                    <div class="endLine"></div>-->
+                        <!--                                </div>-->
+                        <!--                            </div>-->
+                        <!--                        </li>-->
+                    </ul>
+                    <li>
+                        <div class="con">
+                            <div class="end_img">
+                                <img src="~/img/end.png" alt="">
+                            </div>
+                            <div class="text_pos">
+                                <p>已經沒有新的貼文</p>
+                                <button id="seeMore">滑鼠滾輪以顯示更多之前的貼文</button>
+                                <p>按<a style="color: skyblue !important;" href="">這裡</a>來更新你的近況</p>
+                            </div>
+                            <div class="endLine"></div>
+                        </div>
+                    </li>
+                </div>
+            </div>
+            <div id="rightBar" class="col-3">
+                <!-- 這裡面的東西通常看不到 -->
+                <!-- FixedRight 佔住的空間  -->
+                <!-- 這裡按不到，FixedRight才按得到  -->
+                <!-- 右邊的FIXED佔住的空間，如果把FixedRight刪除，這欄會被隱藏然後middleBar會變成col-10 -->
+            </div>
+        </div>
+    </div>
+    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+    <!-- popup內容 -->
+    <!-- 下面是彈出框 -->
+    <div id="postbackground" class="row align-items-center justify-content-center" style="display: none;">
+        <div id="postpopblock">
+            <div id="postblockleft">
+                <img id="postblockimg" src="">
+                <button id="poppostleftarr">&larr;</button>
+                <button id="poppostrightarr">&rarr;</button>
+            </div>
+            <div id="postblockright">
+                <a id="postaccount">
+
+                    <div id="accountimgblock">
+                        <img id="poppostaccountimg" src="">
+                    </div>
+                    <div id="accountnameblock">
+                        <div id="poppostaccountname"></div>
+                    </div>
+
+
+
+                </a>
+                <div id="posttext">
+                    <ul id="posttextblock">
+                        <li class="posttextblockcontext">
+                            <div class="posttextimgblock">
+                                <img id="popposterimg" class="posttextimg" src="">
+                            </div>
+                            <div class="posttextaccount">
+                                <span id="popposteraccount">hiimpoca</span>
+                                <a href="#/" class="bi bi-trash" id="popposterdelete"></a>
+                            </div>
+                            <div class="posttextpost">
+                                <span id="poppostertext">
+                                </span>
+                                <br>
+                                <span id="poppostertime"></span>
+                                <hr>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div id="postselection">
+                    <div class="postselectionblock">
+                        <i id="poppostlike" class="bi bi-heart postselectionicon"></i>
+                        <i id="poppostshare" class="bi bi-box-arrow-right postselectionicon"></i>
+                        <i id="poppostcollect" class="bi bi-bookmark postselectionicon"></i>
+                    </div>
+                </div>
+                <div id="postfollow">
+                    <div id="popoutpostfollowblock"><b id="popposttotallike"></b></div>
+
+
+                    <div id="poppostlatestlikettime"></div>
+
+
+                </div>
+                <div id="postmessg">
+                    <input class="postmessginput" type="text" placeholder="留言...">
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <!-- 彈出框到這 -->
+    <!-- 按讚的彈框 -->
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title" style="margin-left: auto;">貼文按讚的人</h4>
+                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- Modal body -->
+                <div id="likesBlock" class="modal-body">
+
+                    <!-- <div class="d-flex users">
+                        <a class="user_head" href=""><img src="./img/貓片.jpg" alt=""></a>
+                        <div class="user_font">
+                            <a class="user_name" href="../Personal Page/PersonalPageForOthers.html">aaa</a>
+                            <br>
+                            cat_dog
+                        </div>
+                        <button type="submit" class="btn bg-primary text-white ms-auto following">追蹤</button>
+                    </div> -->
+
+                </div>
+            </div>
+        </div>
+
+        <!-- 彈框結尾 -->
+        <!-- 這個是呈現用JS檔，請留著 -->
+
+        <script>
+            var rightBarBreakPoint = 900;
+            var leftBarBreakPoint = 650;
+        </script>
+
+        <script src="~/js/resize.js"></script>
+        <!-- 控制顯示更多文章的東西 -->
+        <script src="~/js/mainPage.js"></script>
+        <!-- 按讚清單 -->
+        <!--        <script src="./js/following.js"></script>-->
+        <!-- 載入popoutpost js 程式 -->
+        <!--        <script src="./js/user_Carousel.js"></script>-->
+        <!-- 控制Truncate文字截斷 -->
+        <script>
+            function toggleTruncate(elementId) {
+                var truncatedText = document.getElementById(elementId);
+                truncatedText.classList.toggle('truncate_text');
+            }
+        </script>
+</body>
+
+
+</html>
