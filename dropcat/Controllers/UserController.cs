@@ -1,8 +1,11 @@
-﻿using dropcat.Data;
+﻿using ClosedXML.Excel;
+using dropcat.Data;
 using dropcat.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MiniExcelLibs;
+using System.Net;
+using System.Net.Mime;
 using System.Reflection.Metadata;
 
 namespace dropcat.Controllers
@@ -36,7 +39,13 @@ namespace dropcat.Controllers
             {
                 var allUsers = dbContext.UserInfo.ToList();
                 var educationCounts = dbContext.UserInfo.GroupBy(u => u.lineid).Select(g => new { LineId = g.Key, Count = g.Count() }).ToList();
-                return Ok(new { Users = allUsers, EducationCounts = educationCounts });
+                var genderCounts = dbContext.UserInfo.GroupBy(u => u.gender).Select(g => new { Gender = g.Key, Count = g.Count() }).ToList();
+
+                foreach (var user in allUsers)
+                {
+                    user.usericon = urltobase64(user.usericon);
+                }
+                return Ok(new { Users = allUsers, EducationCounts = educationCounts, GenderCounts = genderCounts });
             }
 
 
@@ -66,6 +75,11 @@ namespace dropcat.Controllers
                 .FromSqlRaw(sqlQuery)
                 .ToList();
 
+            foreach (var user in searchUser)
+            {
+                user.usericon = urltobase64(user.usericon);
+            }
+
             if (searchUser.Count == 0)
             {
                 return NotFound();
@@ -77,31 +91,27 @@ namespace dropcat.Controllers
         public class EducationCount
         {
             public string LineId { get; set; }
+            public string Gender { get; set; }
             public int Count { get; set; }
         }
 
-        public IActionResult ExportExcel()
+        //轉換urltobase64
+        public String urltobase64(String url)
         {
-            List<UserInfo> exportusers = new List<UserInfo>();
-            exportusers = dbContext.UserInfo.ToList();
-            IEnumerable<object> selectColums = exportusers.Select(u => new
+            try
             {
-                u.id,
-                u.userAccount,
-                u.username,
-                u.phonenumber,
-                u.email,
-            });
+                WebClient webClient = new();
+                byte[] Bytes = webClient.DownloadData(url);
+                string Base64 = Convert.ToBase64String(Bytes);
+                Base64 = "data:image/jpg;base64," + Base64;
+                return Base64;
 
-            MemoryStream memoryStream = new MemoryStream();
-            memoryStream.SaveAs(selectColums);
-            memoryStream.Seek(0, SeekOrigin.Begin);
-            return new FileStreamResult(memoryStream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+            }
+            catch (Exception e)
             {
-                FileDownloadName = "List.xlsx"
-            };
+                return null;
+            }
         }
     }
 }
-
 

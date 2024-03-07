@@ -12,6 +12,22 @@
     }
 }
 
+function genderToString2(genderCode) {
+    //console.log(typeof genderCode)
+    switch (genderCode) {
+        case 0:
+            return "不透露";
+        case 1:
+            return "男";
+        case 2:
+            return "女";
+        default:
+            return "未知";
+    }
+}
+
+
+var searchData;
 var searchBtn = document.getElementById("searchBtn");
 searchBtn.addEventListener("click", function () {
     var keyword = document.getElementById("keyword").value;
@@ -21,6 +37,17 @@ searchBtn.addEventListener("click", function () {
     //console.log(gender);
     //console.log(education);
     $('#countTable').empty();
+    $('#pieChart').empty();
+
+
+    var canvas = document.createElement('canvas');
+    canvas.id = 'barChart';
+    $('#barChart').replaceWith(canvas);
+
+    var canvas = document.createElement('canvas');
+    canvas.id = 'pieChart';
+    $('#pieChart').replaceWith(canvas);
+
 
     $.ajax({
         type: "POST",
@@ -31,7 +58,8 @@ searchBtn.addEventListener("click", function () {
             education: education
         },
         success: function (response) {
-            console.log(response)
+            //console.log(response)
+            searchData = response;
             var tableHTML =
                 `<table class="table table-striped">
                     <tr>
@@ -73,7 +101,7 @@ searchBtn.addEventListener("click", function () {
                         var genderCodeString = response.users[i].gender.toString();
                         var createTime = new Date(response.users[i].createtime);
                         var formattedDate = createTime.toLocaleDateString();
-                        tableHTML += '<tr class="table table-bordered"><td><img src="' + response.users[i].usericon + '" style="width:80px;heigh:80px"></td><td>' + response.users[i].username + '</td><td>' + genderToString(genderCodeString) + '</td><td>' + response.users[i].lineid + '</td><td>' + formattedDate + '</td></tr>';
+                        tableHTML += '<tr class="table table-bordered"><td><img src="' + response.users[i].usericon + '" style="width:80px;height:80px"></td><td>' + response.users[i].username + '</td><td>' + genderToString(genderCodeString) + '</td><td>' + response.users[i].lineid + '</td><td>' + formattedDate + '</td></tr>';
                         totalCount++;
                     }
                 }
@@ -84,24 +112,118 @@ searchBtn.addEventListener("click", function () {
                 $('#userList').html(tableHTML);
 
                 var countPeople = 0;
+                var educationLabels = [];
+                var educationCounts = [];
                 if (Array.isArray(response.educationCounts)) {
+
+                    var hasUnselected = false;
+                    for (var j = 0; j < response.educationCounts.length; j++) {
+                        if (response.educationCounts[j].lineId !== "未選擇") {
+                            educationLabels.push(response.educationCounts[j].lineId);
+                            educationCounts.push(response.educationCounts[j].count);
+                        } else {
+                            hasUnselected = true;
+                        }
+                    }
+                    if (hasUnselected) {
+                        educationLabels.push("未選擇");
+                        educationCounts.push(response.educationCounts.find(item => item.lineId === "未選擇").count);
+                    }
+
+                    //長條圖
+                    var ctx = document.getElementById("barChart");
+                    var barChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: educationLabels,
+                            datasets: [{
+                                label: '學歷統計人數',
+                                data: educationCounts,
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(255, 206, 86, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)',
+                                    'rgba(153, 102, 255, 0.2)',
+                                    'rgba(255, 159, 64, 0.2)'
+                                ],
+                                borderColor: [
+                                    'rgba(255,99,132,1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                    'rgba(255, 159, 64, 1)'
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
+                            }
+                        }
+                    });
+
+                    barChart.resize();
+                    $('#barChart').html();
+
+                    if (Array.isArray(response.genderCounts)) {
+                        //console.log(response.genderCounts);
+
+                        //圓餅圖
+                        var genderLabels = response.genderCounts.map(function (item) {
+                            return genderToString2(item.gender);
+                        });
+                        var genderCounts = response.genderCounts.map(function (item) {
+                            return item.count;
+                        });
+                        //console.log(genderLabels);
+                        //console.log(genderCounts);
+
+
+                        var pieCtx = document.getElementById('pieChart').getContext('2d');
+                        var pieChart = new Chart(pieCtx, {
+                            type: 'pie',
+                            data: {
+                                labels: genderLabels,
+                                datasets: [{
+                                    data: genderCounts,
+                                    backgroundColor: [
+                                        "rgba(255, 99, 132, 0.5)",
+                                        "rgba(54, 162, 235, 0.5)",
+                                        "rgba(255, 206, 86, 0.5)"
+                                    ],
+                                }],
+                            }
+                        })
+                    };
+                    pieChart.resize();
+                    $('#pieChart').html();
+
+
                     var counthtml =
                         `<table class="table table-success table-striped">
                     <tr>
                         <th>學歷</th>
                         <th>人數</th>
                     </tr> `;
-                    for (var j = 0; j < response.educationCounts.length; j++) {
-                        counthtml += '<tr><td>' + response.educationCounts[j].lineId + '</td><td>' + response.educationCounts[j].count + '</td></tr>';
+                    for (var j = 0; j < educationLabels.length; j++) {
+                        counthtml += '<tr><td>' + educationLabels[j] + '</td><td>' + educationCounts[j] + '</td></tr>';
                         countPeople += response.educationCounts[j].count;
                     }
-                    //counthtml += '<tr><td>小計: ' + countPeople + '人' + '</td><td></td></tr>';
                     counthtml += '<tr><td>總計:</td><td>' + countPeople + '</td></tr>';
 
                     counthtml += '</table>';
                     $('#countTable').html(counthtml);
+
                 }
             }
+
         },
         error: function (xhr, status, error) {
             if (xhr.status == 404) {
@@ -112,7 +234,7 @@ searchBtn.addEventListener("click", function () {
     })
 })
 
-
+//清除
 var initialGender = "4";
 var initialEducation = "全部";
 
@@ -126,5 +248,242 @@ clearBtn.addEventListener("click", function () {
 
     $('#userList').empty();
     $('#countTable').empty();
-});
+    $('#barChart').empty();
+    $('#pieChart').empty();
 
+
+    var canvas = document.createElement('canvas');
+    canvas.id = 'barChart';
+    $('#barChart').replaceWith(canvas);
+
+    var canvas = document.createElement('canvas');
+    canvas.id = 'pieChart';
+    $('#pieChart').replaceWith(canvas);
+
+});
+//exportPDFBtn.addEventListener("click", function () {
+//    if (Array.isArray(searchData)) {
+//        var doc = new jspdf.jsPDF();
+//        //doc.addFont('SourceHanSans-Normal.ttf', 'SourceHanSans-Normal', 'normal');
+//        //doc.setFont('SourceHanSans-Normal');
+
+//        var headers = ['個人照片', '用戶名', '性別', '學歷', '帳號建立時間'];
+//        var rows = [];
+
+//        searchData.map((row) => {
+//            var rowData = [
+//                row.usericon,
+//                row.username,
+//                genderToString(row.gender),
+//                row.lineid,
+//                new Date(row.createtime).toLocaleDateString()
+//            ];
+//            rows.push(rowData);
+//        });
+
+
+//        doc.autoTable({
+//            styles: { font: "SourceHanSans-Normal" },
+//            head: [headers],
+//            body: rows,
+//        });
+
+//        doc.save("search_results.pdf");
+//    } else {
+//        alert("請先進行查詢，再點擊輸出按鈕");
+//    }
+//})
+
+var exportPDFBtn = document.getElementById("exportPdf");
+exportPDFBtn.onclick = function () {
+    html2canvas(
+        document.getElementById("userList"),
+        {
+            dpi: 300,//匯出pdf清晰度
+            onrendered: function (canvas) {
+
+                var contentWidth = canvas.width;
+                var contentHeight = canvas.height;
+
+                //一頁pdf顯示html頁面生成的canvas高度;
+                var pageHeight = contentWidth / 592.28 * 841.89;
+                //未生成pdf的html頁面高度
+                var leftHeight = contentHeight;
+                //pdf頁面偏移
+                var position = 0;
+                //html頁面生成的canvas在pdf中圖片的寬高（a4紙的尺寸[595.28,841.89]）
+                var imgWidth = 595.28;
+                var imgHeight = 592.28 / contentWidth * contentHeight;
+
+                var pageData = canvas.toDataURL('image/jpeg', 1.0);
+                var pdf = new jsPDF('', 'pt', 'a4');
+
+                //有兩個高度需要區分，一個是html頁面的實際高度，和生成pdf的頁面高度(841.89)
+                //當內容未超過pdf一頁顯示的範圍，無需分頁
+                if (leftHeight < pageHeight) {
+                    pdf.addImage(pageData, 'JPEG', 0, 0, imgWidth, imgHeight);
+                } else {
+                    while (leftHeight > 0) {
+                        pdf.addImage(pageData, 'JPEG', 0, position, imgWidth, imgHeight)
+                        leftHeight -= pageHeight;
+                        position -= 841.89;
+                        //避免新增空白頁
+                        if (leftHeight > 0) {
+                            pdf.addPage();
+                        }
+                    }
+                }
+                // 將其他元素轉換為 Canvas 並添加到 PDF 中
+                html2canvas(document.getElementById("countTable"), {
+                    dpi: 300,
+                    onrendered: function (canvas) {
+                        var pageData = canvas.toDataURL('image/jpeg', 1.0);
+                        pdf.addPage();
+                        pdf.addImage(pageData, 'JPEG', 0, 0, imgWidth, imgHeight);
+                    },
+                    background: "#fff"
+                });
+
+                html2canvas(document.getElementById("img"), {
+                    dpi: 300,
+                    onrendered: function (canvas) {
+                        var pageData = canvas.toDataURL('image/jpeg', 1.0);
+                        pdf.addPage();
+                        pdf.addImage(pageData, 'JPEG', 0, 0, imgWidth, imgHeight);
+                    },
+                    background: "#fff"
+                });
+
+                pdf.save('myPDF.pdf');
+            },
+            //背景設為白色（預設為黑色）
+            background: "#fff"
+        })
+}
+
+var excelBtn = document.getElementById("exportExcel");
+excelBtn.addEventListener("click", function () {
+
+    if (searchData) {
+
+
+        const workbook = new ExcelJS.Workbook();
+        const sheet = workbook.addWorksheet('UserList');
+        var user = searchData.users
+
+        //sheet.addTable({
+        //    name: 'table名稱',  
+        //    ref: 'A1', 
+        //    columns: [{ name: '用戶名' }, { name: '性別' }, { name: '學歷' }, { name: '帳號建立時間' }],
+        //    rows:[[user.username], [genderToString2(user.gender)], [user.lineid], [new Date(user.createtime).toLocaleDateString()]]
+        //});
+
+        ////sheet.addRow(['個人照片', '用戶名', '性別', '學歷', '帳號建立時間']);
+        const headerRow = sheet.addRow(['個人照片', '用戶名', '性別', '學歷', '帳號建立時間']);
+        headerRow.eachCell((cell) => {
+            // 设置表头单元格样式
+            cell.fill = {
+                type: 'pattern',
+                pattern: 'solid',
+                fgColor: { argb: 'FFFF00' } // 设置背景色为黄色
+            };
+            // 设置表头单元格边框
+            cell.border = {
+                top: { style: 'thin' },
+                left: { style: 'thin' },
+                bottom: { style: 'thin' },
+                right: { style: 'thin' }
+            };
+        });
+
+        sheet.getColumn(1).width = 10
+        sheet.getColumn(2).width = 20
+        sheet.getColumn(3).width = 10
+        sheet.getColumn(4).width = 10
+        sheet.getColumn(5).width = 20
+
+
+        for (var i = 0; i < user.length; i++) {
+            //console.log(user[i].usericon)
+            sheet.getRow(i + 2).height = 50;
+            var base64Image = user[i].usericon;
+            var imageId = workbook.addImage({
+                base64: base64Image,
+                extension: 'png',
+            });
+            sheet.addImage(imageId, {
+                tl: { col: 0, row: i + 1 },
+                ext: { width: 50, height: 50 },
+                editAs: 'oneCell'
+            });
+            //sheet.addRow(['', user[i].username, genderToString2(user[i].gender), user[i].lineid, new Date(user[i].createtime).toLocaleDateString()]);
+            const userInfoRow = sheet.getRow(i + 2);
+            userInfoRow.getCell(2).value = user[i].username;
+            userInfoRow.getCell(3).value = genderToString2(user[i].gender);
+            userInfoRow.getCell(4).value = user[i].lineid;
+            userInfoRow.getCell(5).value = new Date(user[i].createtime).toLocaleDateString();
+        }
+
+
+        //// 表格裡面的資料都填寫完成之後，訂出下載的callback function
+        //// 異步的等待他處理完之後，創建url與連結，觸發下載
+        //workbook.xlsx.writeBuffer().then((content) => {
+
+        //    const link = document.createElement("a");
+        //    const blobData = new Blob([content], {
+        //        type: "application/vnd.ms-excel;charset=utf-8;"
+        //    });
+        //    link.download = 'demo.xlsx';
+        //    link.href = URL.createObjectURL(blobData);
+        //    link.click();
+        //});
+
+        // 添加 barChart 圖片
+        html2canvas(document.getElementById("barChart"), {
+            dpi: 300,
+            onrendered: function (canvas) {
+                var chartDataUrl = canvas.toDataURL('image/jpeg', 1.0);
+                var chartImageId = workbook.addImage({
+                    base64: chartDataUrl,
+                    extension: 'png',
+                });
+                sheet.addImage(chartImageId, {
+                    tl: { col: 7, row: 1 },
+                    ext: { width: 800, height: 400 },
+                    editAs: 'oneCell'
+                });
+
+                html2canvas(document.getElementById("pieChart"), {
+                    dpi: 300,
+                    onrendered: function (canvas) {
+                        var pieChartDataUrl = canvas.toDataURL('image/jpeg', 1.0);
+                        var pieChartImageId = workbook.addImage({
+                            base64: pieChartDataUrl,
+                            extension: 'png',
+                        });
+                        sheet.addImage(pieChartImageId, {
+                            tl: { col: 7, row: 15 },
+                            ext: { width: 400, height: 400 },
+                            editAs: 'oneCell'
+                        });
+
+                        workbook.xlsx.writeBuffer().then((content) => {
+                            const link = document.createElement("a");
+                            const blobData = new Blob([content], {
+                                type: "application/vnd.ms-excel;charset=utf-8;"
+                            });
+                            link.download = 'demo.xlsx';
+                            link.href = URL.createObjectURL(blobData);
+                            link.click();
+                        });
+                    },
+                    background: "#fff"
+                });
+            },
+            background: "#fff"
+        });
+
+    } else {
+        alert("請先查詢，再點選輸出按鈕");
+    }
+})

@@ -64,6 +64,12 @@ $.getScript("https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js
 // 左邊Bar的HTML
 $("#FixedLeft").append(`
 
+<div id="logo">
+    <a href="#">
+    <img src="../img/logo.png"></img>
+    </a>
+</div>
+
 <a href="/Home/mainPage" class="leftSelectAble">
     <div class="leftIcon">
         <i class="bi bi-house-door"></i>
