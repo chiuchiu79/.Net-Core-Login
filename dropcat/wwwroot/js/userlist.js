@@ -369,7 +369,7 @@ excelBtn.addEventListener("click", function () {
 
         const workbook = new ExcelJS.Workbook();
         const sheet = workbook.addWorksheet('UserList');
-        var user = searchData.users
+        var data;
 
         //sheet.addTable({
         //    name: 'table名稱',  
@@ -403,46 +403,41 @@ excelBtn.addEventListener("click", function () {
         sheet.getColumn(5).width = 20
 
 
-        for (var i = 0; i < user.length; i++) {
-            //console.log(user[i].usericon)
-            sheet.getRow(i + 2).height = 50;
-            var base64Image = user[i].usericon;
-            var imageId = workbook.addImage({
-                base64: base64Image,
-                extension: 'png',
-            });
-            sheet.addImage(imageId, {
-                tl: { col: 0, row: i + 1 },
-                ext: { width: 50, height: 50 },
-                editAs: 'oneCell'
-            });
-            //sheet.addRow(['', user[i].username, genderToString2(user[i].gender), user[i].lineid, new Date(user[i].createtime).toLocaleDateString()]);
-            const userInfoRow = sheet.getRow(i + 2);
-            userInfoRow.getCell(2).value = user[i].username;
-            userInfoRow.getCell(3).value = genderToString2(user[i].gender);
-            userInfoRow.getCell(4).value = user[i].lineid;
-            userInfoRow.getCell(5).value = new Date(user[i].createtime).toLocaleDateString();
-        }
+        if (searchData.users) {
+            data = searchData.users;
+            for (var i = 0; i < data.length; i++) {
+                //console.log(user[i].usericon)
+                sheet.getRow(i + 2).height = 50;
+                var base64Image = data[i].usericon;
+                var imageId = workbook.addImage({
+                    base64: base64Image,
+                    extension: 'png',
+                });
+                sheet.addImage(imageId, {
+                    tl: { col: 0, row: i + 1 },
+                    ext: { width: 50, height: 50 },
+                    editAs: 'oneCell'
+                });
+                //sheet.addRow(['', user[i].username, genderToString2(user[i].gender), user[i].lineid, new Date(user[i].createtime).toLocaleDateString()]);
+                const userInfoRow = sheet.getRow(i + 2);
+                userInfoRow.getCell(2).value = data[i].username;
+                userInfoRow.getCell(3).value = genderToString2(data[i].gender);
+                userInfoRow.getCell(4).value = data[i].lineid;
+                userInfoRow.getCell(5).value = new Date(data[i].createtime).toLocaleDateString();
+            }
 
+            // 计算数据总行数（除去标题行）
+            var totalRows = sheet.rowCount - 1;
 
-        //// 表格裡面的資料都填寫完成之後，訂出下載的callback function
-        //// 異步的等待他處理完之後，創建url與連結，觸發下載
-        //workbook.xlsx.writeBuffer().then((content) => {
+            // 在最后一行添加小计信息
+            sheet.addRow(['小计:', totalRows + '人']);
 
-        //    const link = document.createElement("a");
-        //    const blobData = new Blob([content], {
-        //        type: "application/vnd.ms-excel;charset=utf-8;"
-        //    });
-        //    link.download = 'demo.xlsx';
-        //    link.href = URL.createObjectURL(blobData);
-        //    link.click();
-        //});
-
-        // 添加 barChart 圖片
-        html2canvas(document.getElementById("barChart"), {
-            dpi: 300,
-            onrendered: function (canvas) {
-                var chartDataUrl = canvas.toDataURL('image/jpeg', 1.0);
+            // 添加 barChart 圖片
+            html2canvas(document.getElementById("barChart"), {
+                dpi: 300,
+                background: "#fff"
+            }).then((barCanvas) => {
+                var chartDataUrl = barCanvas.toDataURL('image/jpeg', 1.0);
                 var chartImageId = workbook.addImage({
                     base64: chartDataUrl,
                     extension: 'png',
@@ -453,37 +448,86 @@ excelBtn.addEventListener("click", function () {
                     editAs: 'oneCell'
                 });
 
-                html2canvas(document.getElementById("pieChart"), {
+                return html2canvas(document.getElementById("pieChart"), {
                     dpi: 300,
-                    onrendered: function (canvas) {
-                        var pieChartDataUrl = canvas.toDataURL('image/jpeg', 1.0);
-                        var pieChartImageId = workbook.addImage({
-                            base64: pieChartDataUrl,
-                            extension: 'png',
-                        });
-                        sheet.addImage(pieChartImageId, {
-                            tl: { col: 7, row: 15 },
-                            ext: { width: 400, height: 400 },
-                            editAs: 'oneCell'
-                        });
-
-                        workbook.xlsx.writeBuffer().then((content) => {
-                            const link = document.createElement("a");
-                            const blobData = new Blob([content], {
-                                type: "application/vnd.ms-excel;charset=utf-8;"
-                            });
-                            link.download = 'demo.xlsx';
-                            link.href = URL.createObjectURL(blobData);
-                            link.click();
-                        });
-                    },
                     background: "#fff"
                 });
-            },
-            background: "#fff"
-        });
+            }).then((pieCanvas) => {
+                var pieChartDataUrl = pieCanvas.toDataURL('image/jpeg', 1.0);
+                var pieChartImageId = workbook.addImage({
+                    base64: pieChartDataUrl,
+                    extension: 'png',
+                });
+                sheet.addImage(pieChartImageId, {
+                    tl: { col: 7, row: 10 },
+                    ext: { width: 400, height: 400 },
+                    editAs: 'oneCell'
+                });
+
+                return workbook.xlsx.writeBuffer();
+            }).then((content) => {
+                const link = document.createElement("a");
+                const blobData = new Blob([content], {
+                    type: "application/vnd.ms-excel;charset=utf-8;"
+                });
+                link.download = 'demo.xlsx';
+                link.href = URL.createObjectURL(blobData);
+                link.click();
+            }).catch((error) => {
+                console.error('Error during canvas rendering:', error);
+            });
+
+
+        } else {
+            data = searchData;
+
+            for (var i = 0; i < data.length; i++) {
+                //console.log(user[i].usericon)
+                sheet.getRow(i + 2).height = 50;
+                var base64Image = data[i].usericon;
+                var imageId = workbook.addImage({
+                    base64: base64Image,
+                    extension: 'png',
+                });
+                sheet.addImage(imageId, {
+                    tl: { col: 0, row: i + 1 },
+                    ext: { width: 50, height: 50 },
+                    editAs: 'oneCell'
+                });
+                //sheet.addRow(['', user[i].username, genderToString2(user[i].gender), user[i].lineid, new Date(user[i].createtime).toLocaleDateString()]);
+                const userInfoRow = sheet.getRow(i + 2);
+                userInfoRow.getCell(2).value = data[i].username;
+                userInfoRow.getCell(3).value = genderToString2(data[i].gender);
+                userInfoRow.getCell(4).value = data[i].lineid;
+                userInfoRow.getCell(5).value = new Date(data[i].createtime).toLocaleDateString();
+            }
+            // 计算数据总行数（除去标题行）
+            var totalRows = sheet.rowCount - 1;
+
+            // 在最后一行添加小计信息
+            sheet.addRow(['小计:', totalRows + '人']);
+
+
+            // 表格裡面的資料都填寫完成之後，訂出下載的callback function
+            // 異步的等待他處理完之後，創建url與連結，觸發下載
+            workbook.xlsx.writeBuffer().then((content) => {
+
+                const link = document.createElement("a");
+                const blobData = new Blob([content], {
+                    type: "application/vnd.ms-excel;charset=utf-8;"
+                });
+                link.download = 'demo.xlsx';
+                link.href = URL.createObjectURL(blobData);
+                link.click();
+            });
+        }
+
+
 
     } else {
         alert("請先查詢，再點選輸出按鈕");
     }
 })
+
+
+
