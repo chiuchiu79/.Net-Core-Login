@@ -528,6 +528,3 @@ excelBtn.addEventListener("click", function () {
         alert("請先查詢，再點選輸出按鈕");
     }
 })
-
-
-

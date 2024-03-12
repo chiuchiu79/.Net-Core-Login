@@ -26,9 +26,9 @@ namespace dropcat.Models
 
         public string? introduction { get; set; }
 
-        private int _gender;
+        private int? _gender;
 
-        public int gender 
+        public int? gender
         {
             get => _gender;
             set => _gender = value;
@@ -38,7 +38,7 @@ namespace dropcat.Models
 
         public DateTime? tokenTime { get; set; }
 
-        public string lineid { get; set; }
+        public string? lineid { get; set; }
 
     }
 }
