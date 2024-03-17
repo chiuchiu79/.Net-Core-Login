@@ -33,9 +33,6 @@ searchBtn.addEventListener("click", function () {
     var keyword = document.getElementById("keyword").value;
     var education = document.getElementById("education").value;
     var gender = document.getElementById("gender").value;
-    //console.log(keyword);
-    //console.log(gender);
-    //console.log(education);
     $('#countTable').empty();
     $('#pieChart').empty();
 
@@ -261,38 +258,6 @@ clearBtn.addEventListener("click", function () {
     $('#pieChart').replaceWith(canvas);
 
 });
-//exportPDFBtn.addEventListener("click", function () {
-//    if (Array.isArray(searchData)) {
-//        var doc = new jspdf.jsPDF();
-//        //doc.addFont('SourceHanSans-Normal.ttf', 'SourceHanSans-Normal', 'normal');
-//        //doc.setFont('SourceHanSans-Normal');
-
-//        var headers = ['個人照片', '用戶名', '性別', '學歷', '帳號建立時間'];
-//        var rows = [];
-
-//        searchData.map((row) => {
-//            var rowData = [
-//                row.usericon,
-//                row.username,
-//                genderToString(row.gender),
-//                row.lineid,
-//                new Date(row.createtime).toLocaleDateString()
-//            ];
-//            rows.push(rowData);
-//        });
-
-
-//        doc.autoTable({
-//            styles: { font: "SourceHanSans-Normal" },
-//            head: [headers],
-//            body: rows,
-//        });
-
-//        doc.save("search_results.pdf");
-//    } else {
-//        alert("請先進行查詢，再點擊輸出按鈕");
-//    }
-//})
 
 var exportPDFBtn = document.getElementById("exportPdf");
 exportPDFBtn.onclick = function () {
@@ -371,23 +336,13 @@ excelBtn.addEventListener("click", function () {
         const sheet = workbook.addWorksheet('UserList');
         var data;
 
-        //sheet.addTable({
-        //    name: 'table名稱',  
-        //    ref: 'A1', 
-        //    columns: [{ name: '用戶名' }, { name: '性別' }, { name: '學歷' }, { name: '帳號建立時間' }],
-        //    rows:[[user.username], [genderToString2(user.gender)], [user.lineid], [new Date(user.createtime).toLocaleDateString()]]
-        //});
-
-        ////sheet.addRow(['個人照片', '用戶名', '性別', '學歷', '帳號建立時間']);
         const headerRow = sheet.addRow(['個人照片', '用戶名', '性別', '學歷', '帳號建立時間']);
         headerRow.eachCell((cell) => {
-            // 设置表头单元格样式
             cell.fill = {
                 type: 'pattern',
                 pattern: 'solid',
-                fgColor: { argb: 'FFFF00' } // 设置背景色为黄色
+                fgColor: { argb: 'FFFF00' } 
             };
-            // 设置表头单元格边框
             cell.border = {
                 top: { style: 'thin' },
                 left: { style: 'thin' },
@@ -418,7 +373,6 @@ excelBtn.addEventListener("click", function () {
                     ext: { width: 50, height: 50 },
                     editAs: 'oneCell'
                 });
-                //sheet.addRow(['', user[i].username, genderToString2(user[i].gender), user[i].lineid, new Date(user[i].createtime).toLocaleDateString()]);
                 const userInfoRow = sheet.getRow(i + 2);
                 userInfoRow.getCell(2).value = data[i].username;
                 userInfoRow.getCell(3).value = genderToString2(data[i].gender);
@@ -426,13 +380,10 @@ excelBtn.addEventListener("click", function () {
                 userInfoRow.getCell(5).value = new Date(data[i].createtime).toLocaleDateString();
             }
 
-            // 计算数据总行数（除去标题行）
             var totalRows = sheet.rowCount - 1;
 
-            // 在最后一行添加小计信息
-            sheet.addRow(['小计:', totalRows + '人']);
+            sheet.addRow(['小計:', totalRows + '人']);
 
-            // 添加 barChart 圖片
             html2canvas(document.getElementById("barChart"), {
                 dpi: 300,
                 background: "#fff"
@@ -482,7 +433,6 @@ excelBtn.addEventListener("click", function () {
             data = searchData;
 
             for (var i = 0; i < data.length; i++) {
-                //console.log(user[i].usericon)
                 sheet.getRow(i + 2).height = 50;
                 var base64Image = data[i].usericon;
                 var imageId = workbook.addImage({
@@ -494,18 +444,16 @@ excelBtn.addEventListener("click", function () {
                     ext: { width: 50, height: 50 },
                     editAs: 'oneCell'
                 });
-                //sheet.addRow(['', user[i].username, genderToString2(user[i].gender), user[i].lineid, new Date(user[i].createtime).toLocaleDateString()]);
+
                 const userInfoRow = sheet.getRow(i + 2);
                 userInfoRow.getCell(2).value = data[i].username;
                 userInfoRow.getCell(3).value = genderToString2(data[i].gender);
                 userInfoRow.getCell(4).value = data[i].lineid;
                 userInfoRow.getCell(5).value = new Date(data[i].createtime).toLocaleDateString();
             }
-            // 计算数据总行数（除去标题行）
             var totalRows = sheet.rowCount - 1;
 
-            // 在最后一行添加小计信息
-            sheet.addRow(['小计:', totalRows + '人']);
+            sheet.addRow(['小計:', totalRows + '人']);
 
 
             // 表格裡面的資料都填寫完成之後，訂出下載的callback function
